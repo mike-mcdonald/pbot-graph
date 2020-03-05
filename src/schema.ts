@@ -6,7 +6,7 @@ import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 
 import { streetType, getStreet, getStreets } from './street';
 import { addressType, getCandidates } from './address';
-import { sectionType, getText, Section } from './text';
+import { sectionType, getDocument, Section } from './document';
 import { projectType, getProjectsById, getProjectsByBBox } from './project';
 
 /**
@@ -33,7 +33,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { name }): Promise<Section[]> => await getText(name)
+      resolve: async (root, { name }): Promise<Section[]> => await getDocument(name)
     },
     address: {
       type: GraphQLList(addressType),

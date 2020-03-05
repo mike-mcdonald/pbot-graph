@@ -18,7 +18,7 @@ export type Section = {
 
 export const sectionType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Section',
-  description: 'A transportation project in the City of Portland',
+  description: 'A section of text in a Portland Bureau of Transportaiton document.',
   fields: () => ({
     id: {
       type: GraphQLString,
@@ -47,7 +47,7 @@ export const sectionType: GraphQLObjectType = new GraphQLObjectType({
   })
 });
 
-export const getText = (documentName: string): Promise<Section[]> =>
+export const getDocument = (documentName: string): Promise<Section[]> =>
   new Promise<Section[]>((resolve, reject) => {
     Metalsmith(__dirname)
       .source(`./${documentName}`)
