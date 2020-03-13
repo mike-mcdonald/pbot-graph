@@ -196,31 +196,26 @@ name: Transportation Policies
 > **d:** Establish mode split targets in 2040 Growth Concept areas within the City, consistent with Metro's targets for these areas. (Transportation System Plan Policy 9.49.d)
 >
 > **e:** By 2035, increase the mode share of daily non-drive alone trips to 70 percent citywide, and to the following in the five pattern areas:
-
-
-| **Pattern Area**      | **2035 Daily Target Mode Share** |
-| - | - |
-| Central City          | > 85%                            |
-| Inner Neighborhoods   | > 70%                            |
-| Western Neighborhoods | > 65%                            |
-| Eastern Neighborhoods | > 65%                            |
-| Industrial and River  | > 55%                            |
-
-
+>
+> | **Pattern Area**      | **2035 Daily Target Mode > Share** |
+> | - | - |
+> | Central City          | > > 85%                            |
+> | Inner Neighborhoods   | > > 70%                            |
+> | Western Neighborhoods | > > 65%                            |
+> | Eastern Neighborhoods | > > 65%                            |
+> | Industrial and River  | > > 55%                            |
 > (Transportation System Plan Policy 9.49.e)
 >
 > **f:** By 2035, 70 percent of commuters walk, bike, take transit, carpool, or work from home at approximately the following rates:
-
-
-| **Mode**                       | **Mode Share** |
-| - | - |
-| Walk                           | 7.5% |
-| Bicycle                        | 25% |
-| Transit                        | 25% |
-| Carpool                        | 12.5% |
-| Single Occupant Vehicle (SOV)  | 30% or less |
-| Work at home                   | 10% below the line (calculated outside of the modal targets above) |
-
+>
+> | **Mode**                       | **Mode Share** |
+> | - | - |
+> | Walk                           | 7.5% |
+> | Bicycle                        | 25% |
+> | Transit                        | 25% |
+> | Carpool                        | 12.5% |
+> | Single Occupant Vehicle (SOV)  | 30% or less |
+> | Work at home                   | 10% below the line > (calculated outside of the modal targets above) |
 > (Transportation System Plan Policy 9.49.f)
 >
 > **g:** By 2035, reduce Portland's transportation-related carbon emissions to 50% below 1990 levels, at approximately 934,000 metric tons. (Transportation System Plan Policy 9.49.g)
@@ -234,13 +229,10 @@ name: Transportation Policies
 > **k:** Maintain acceptable levels of performance on state facilities and the regional arterial and throughway network, consistent with the interim standard in Table 9.2, in the development and adoption of, and amendments to, the Transportation System Plan and in legislative amendments to the Comprehensive Plan Map. (Transportation System Plan Plan Policy 9.49.k)
 >
 > **l:** In areas identified by Metro that exceed the level-of-service in Table 9.2 and are planned to, but do not currently meet the alternative performance criteria, establish an action plan that does the following:
-
--   Anticipates growth and future impacts of motor vehicle traffic on multimodal travel in the area
-
--   Establishes strategies for mitigating the future impacts of motor vehicles
-
--   Establishes performance standards for monitoring and implementing the action plan. (Transportation System Plan Policy 9.49.l)
-
+> -   Anticipates growth and future impacts of motor > vehicle traffic on multimodal travel in the area
+> -   Establishes strategies for mitigating the future > impacts of motor vehicles
+> -   Establishes performance standards for monitoring and implementing the action plan. (Transportation System Plan Policy 9.49.l)
+>
 > **m:** Develop performance measures to track progress in creating and maintaining the transportation system. (Transportation System Plan Policy 9.49.m)
 
 ![](/img/media/image4.png)
@@ -248,7 +240,6 @@ name: Transportation Policies
 **Regional congestion management:** Coordinate with Metro to establish new regional multimodal mobility standards that prioritize transit, freight, and system completeness. (Comprehensive Plan Policy 9.50)
 
 > **a:** Create a regional congestion management approach, including a market-based system, to price or charge for auto trips and parking, better account for the cost of auto trips, and to more efficiently manage the regional system. (Comprehensive Plan Policy 9.50.a)
->
 > **b:** In the interim, use the deficiency thresholds and operating standards of the Regional Mobility Policy, in Figure 9‐4, for evaluation of impacts to state facilities and the regional arterial and throughway network. (Transportation System Plan Policy 9.50.b)
 
   -----------------------------------------------------------------------------------------
@@ -298,15 +289,11 @@ Coordinate with state and federal agencies, local and regional governments, spec
 > **a:** Ensure that all levels of automated vehicles advance Vision Zero by operating safely for all users, especially for vulnerable road users. Require adequate insurance coverage for operators, customers, and the public at-large by providers of connected and autonomous vehicles. (Transportation System Plan Policy 9.68.a)
 >
 > **b.** Ensure that connected and automated vehicles improve travel time reliability and system efficiency by:
-
-1.  maintaining or reducing the number of vehicle trips during peak congestion periods;
-
-2.  reducing low occupancy vehicle trips during peak congestion periods;
-
-3.  paying for use of, and impact on, Portland's transportation system including factors such as congestion level, vehicle miles traveled, vehicle occupancy, and vehicle energy efficiency.
-
-4.  Supporting and encouraging use of public transportation (Transportation System Plan Policy Policy 9.68.b)
-
+>1.  maintaining or reducing the number of vehicle >trips during peak congestion periods;
+>2.  reducing low occupancy vehicle trips during peak congestion periods;
+>3.  paying for use of, and impact on, Portland's >transportation system including factors such as >congestion level, vehicle miles traveled, vehicle >occupancy, and vehicle energy efficiency.
+>4.  Supporting and encouraging use of public transportation (Transportation System Plan Policy Policy 9.68.b)
+>
 > **c.** Cut vehicle carbon pollution by reducing low occupancy "empty miles" traveled by passenger vehicles with zero or one passengers. Prioritize electric and other zero direct emission vehicles operated by fleets and carrying multiple passengers. (Transportation System Plan Policy Policy 9.68.c)
 >
 > **d.** Make the benefits of automated mobility available on an equitable basis to all segments of the community while ensuring traditionally disadvantaged communities are not disproportionately hurt by connected and autonomous vehicle use. This includes people with disabilities, as well as communities of color, women, and geographically underserved communities. (Transportation System Plan Policy Policy 9.68.d)
