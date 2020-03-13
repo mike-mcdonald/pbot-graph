@@ -111,21 +111,17 @@ export const streetType: GraphQLObjectType = new GraphQLObjectType({
       resolve: async (street: Street): Promise<number | undefined> => {
         const url = 'https://www.portlandmaps.com/arcgis/rest/services/Public/COP_OpenData_Transportation/MapServer/68';
 
-        const res = await axios
-          .get(`${url}/query`, {
-            params: {
-              f: 'geojson',
-              geometryType: esriGeometryType(street.geometry),
-              geometry: esriGeometry(street.geometry),
-              spatialRel: 'esriSpatialRelEnvelopeIntersects',
-              inSR: '4326',
-              outSR: '4326',
-              outFields: '*'
-            }
-          })
-          .catch(err => {
-            throw new Error(err);
-          });
+        const res = await axios.get(`${url}/query`, {
+          params: {
+            f: 'geojson',
+            geometryType: esriGeometryType(street.geometry),
+            geometry: esriGeometry(street.geometry),
+            spatialRel: 'esriSpatialRelEnvelopeIntersects',
+            inSR: '4326',
+            outSR: '4326',
+            outFields: '*'
+          }
+        });
 
         if (res.status == 200 && res.data && res.data.features) {
           // sort the features by distance
@@ -237,9 +233,11 @@ export function parseStreet(feature: Feature): Street {
     };
   }
 
+  const name = feature.attributes.StreetName ? feature.attributes.StreetName.trim() : 'Unnamed segment';
+
   return {
     id: feature.attributes.TranPlanID,
-    name: feature.attributes.StreetName,
+    name: name ? name : 'Unnamed segment',
     geometry,
     classifications: {
       traffic: feature.attributes.Traffic,
