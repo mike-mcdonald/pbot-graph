@@ -50,7 +50,7 @@ export const projectType: GraphQLObjectType = new GraphQLObjectType({
       description: 'The GeoJSON object representing the project'
     },
     number: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
       description: 'The internal number of the project'
     },
     location: {
