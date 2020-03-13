@@ -1,13 +1,12 @@
 // @flow strict
 import along from '@turf/along';
-import area from '@turf/area';
-import bboxPolygon from '@turf/bbox-polygon';
 import distance from '@turf/distance';
 import * as turf from '@turf/helpers';
 import length from '@turf/length';
 import axios, { AxiosResponse } from 'axios';
 import { GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import proj4 from 'proj4';
+import ArcGISParser, { Feature } from 'terraformer-arcgis-parser';
 
 import { GeometryObject } from './geojson';
 import { getProjects, projectType, Project } from './project';
@@ -229,26 +228,28 @@ export const streetType: GraphQLObjectType = new GraphQLObjectType({
  * Transform a GeoJSON street feature into an internal Street object
  * @param feature GeoJSON Feature from a portlandmaps ArcGIS REST API
  */
-export function parseStreet(feature: turf.Feature<turf.LineString>): Street {
-  if (!feature.properties) {
+export function parseStreet(feature: Feature): Street {
+  const geometry = ArcGISParser.parse(feature).geometry as turf.LineString;
+
+  if (!feature.attributes) {
     return {
-      geometry: feature.geometry
+      geometry
     };
   }
 
   return {
-    id: feature.properties.TranPlanID,
-    name: feature.properties.StreetName,
-    geometry: feature.geometry,
+    id: feature.attributes.TranPlanID,
+    name: feature.attributes.StreetName,
+    geometry,
     classifications: {
-      traffic: feature.properties.Traffic,
-      transit: feature.properties.Transit,
-      bicycle: feature.properties.Bicycle,
-      pedestrian: feature.properties.Pedestrian,
-      freight: feature.properties.Freight,
-      emergency: feature.properties.Emergency,
-      design: feature.properties.Design,
-      greenscape: feature.properties.Greenscape
+      traffic: feature.attributes.Traffic,
+      transit: feature.attributes.Transit,
+      bicycle: feature.attributes.Bicycle,
+      pedestrian: feature.attributes.Pedestrian,
+      freight: feature.attributes.Freight,
+      emergency: feature.attributes.Emergency,
+      design: feature.attributes.Design,
+      greenscape: feature.attributes.Greenscape
     }
   };
 }
@@ -259,18 +260,14 @@ export function parseStreet(feature: turf.Feature<turf.LineString>): Street {
 export async function getStreet(id: string): Promise<Street | null> {
   // Returning a promise just to illustrate GraphQL.js's support.
   for (const url of URLS) {
-    const res = await axios
-      .get(`${url}/query`, {
-        params: {
-          f: 'geojson',
-          where: `TranPlanID='${id}'`,
-          outSR: '4326',
-          outFields: '*'
-        }
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
+    const res = await axios.get(`${url}/query`, {
+      params: {
+        f: 'json',
+        where: `TranPlanID='${id}'`,
+        outSR: '4326',
+        outFields: '*'
+      }
+    });
 
     if (res.status == 200 && res.data && res.data.features) {
       const data = res.data.features[0];
@@ -294,26 +291,22 @@ export async function getStreets(bbox: turf.BBox, spatialReference: number): Pro
   }
 
   for (const url of URLS) {
-    const res = await axios
-      .get(`${url}/query`, {
-        params: {
-          f: 'geojson',
-          geometryType: 'esriGeometryEnvelope',
-          geometry: bbox.join(','),
-          spatialRel: 'esriSpatialRelIntersects',
-          inSR: '4326',
-          outSR: '4326',
-          outFields: '*'
-        }
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
+    const res = await axios.get(`${url}/query`, {
+      params: {
+        f: 'json',
+        geometryType: 'esriGeometryEnvelope',
+        geometry: bbox.join(','),
+        spatialRel: 'esriSpatialRelIntersects',
+        inSR: '4326',
+        outSR: '4326',
+        outFields: '*'
+      }
+    });
 
     if (res.status == 200 && res.data && res.data.features) {
-      const data: turf.Feature<turf.LineString>[] = res.data.features;
+      const data = res.data.features;
 
-      return data.map((value: turf.Feature<turf.LineString>) => {
+      return data.map((value: Feature) => {
         return parseStreet(value);
       });
     }
