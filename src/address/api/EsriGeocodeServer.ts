@@ -9,7 +9,9 @@ export class ESRIGeocodeServer implements IAddressSearchAPI {
   async search(query: string, options?: any): Promise<AddressCandidate[]> {
     let body = {
       'Single Line Input': query,
-      f: 'pjson'
+      City: 'Portland',
+      f: 'pjson',
+      outSR: 4326
     };
     if (options) {
       body = Object.assign(body, options);
