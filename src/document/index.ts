@@ -51,14 +51,14 @@ export const getDocument = (documentName: string): Promise<Section[]> =>
   new Promise<Section[]>((resolve, reject) => {
     Metalsmith(__dirname)
       .source(`./${documentName}`)
-      .destination(`./${documentName}/built`)
+      .destination(`./build/${documentName}`)
       .clean(false) // do not clean destination
       // directory before new build
       .use(markdown())
       .build(function (err: Error | null, files: Files) {
         if (err) reject(err);
 
-        const sections: Section[] = new Array<Section>();
+        const sections = new Array<Section>();
 
         Object.keys(files).forEach(key => {
           const text = files[key];
@@ -77,7 +77,7 @@ export const getDocument = (documentName: string): Promise<Section[]> =>
 
             sections.push(section);
           } catch (error) {
-            console.error(`Error parsing ${JSON.stringify(text)}`);
+            console.error(`Error parsing ${key}: ${JSON.stringify(error)}`);
           }
         });
 

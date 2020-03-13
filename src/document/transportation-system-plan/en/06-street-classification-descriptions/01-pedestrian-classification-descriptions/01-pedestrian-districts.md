@@ -3,7 +3,7 @@ tree:
   - 6
   - 1
   - 1
-id: pedestrian-district
+id: pedestrian-districts
 name: Pedestrian Districts
 ---
 ### Pedestrian Districts

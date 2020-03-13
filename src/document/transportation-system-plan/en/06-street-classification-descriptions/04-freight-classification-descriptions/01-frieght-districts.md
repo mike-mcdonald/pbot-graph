@@ -3,7 +3,7 @@ tree:
   - 6
   - 4
   - 1
-id: freight-distrcts
+id: freight-district
 name: Freign Districts
 ---
 ### Freight Districts
