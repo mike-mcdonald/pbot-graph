@@ -4,8 +4,7 @@
   "description": "Backend GraphQL server for an PBOT web applications",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build && node dist/index.js",
-    "dev": "npm run build && tsc -w",
+    "start": "nodemon",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postbuild": "copyfiles -u 2 src/document/**/*.md dist/document"
@@ -44,6 +43,7 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.6.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.0",
     "tslint-config-prettier": "^1.18.0",
