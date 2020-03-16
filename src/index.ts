@@ -2,8 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import graphqlHTTP from 'express-graphql';
 import cors from 'cors';
+import { config as loadenv } from 'dotenv';
 
 import schema from './schema';
+
+if (process.env.NODE_ENV !== 'production') {
+  loadenv();
+}
 
 const app = express();
 

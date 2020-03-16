@@ -7,7 +7,8 @@
     "start": "nodemon",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postbuild": "copyfiles -u 2 src/document/**/*.md dist/document"
+    "postbuild": "copyfiles -u 2 src/document/**/*.md dist/document",
+    "prestart": "copyfiles .env dist/"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "@types/proj4": "^2.5.0",
     "axios": "^0.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.7",
