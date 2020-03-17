@@ -114,6 +114,7 @@ jobs:
   deploy_image:
     <<: *azure_container_config
     steps:
+      - checkout
       - *azure_login
       - run:
           name: Login to Kubernetes cluster
@@ -153,6 +154,7 @@ workflows:
   release:
     jobs:
       - push_image:
+          context: Azure Clients
           filters:
             branches:
               ignore:
@@ -160,6 +162,7 @@ workflows:
             tags:
               only: /^[0-9]+(\.[0-9]+)*/
       - deploy_image:
+          context: Azure Clients
           requires:
             - push_image
           filters:
