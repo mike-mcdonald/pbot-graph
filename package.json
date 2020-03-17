@@ -1,7 +1,7 @@
 {
   "name": "pbot-graph",
   "version": "1.0.0",
-  "description": "Backend GraphQL server for an PBOT web applications",
+  "description": "Backend GraphQL server for PBOT web applications",
   "main": "dist/index.js",
   "scripts": {
     "start": "nodemon",
