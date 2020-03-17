@@ -1,6 +1,6 @@
 {
   "name": "pbot-graph",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Backend GraphQL server for PBOT web applications",
   "main": "dist/index.js",
   "scripts": {
