@@ -36,11 +36,11 @@ The Transportation System Plan helps implement the City's 2035 Comprehensive Pla
 
 ## Elements of the TSP
 
-The goals and policies, street classification descriptions and maps, the financial plan and the master street plan maps in the TSP were adopted as part of the Comprehensive Plan by City Council in 2016. The TSP was adopted concurrently with the Comprehensive Plan, but published under a separate cover. Stage 3 Update will be adopted separately from the Comp Plan and Stages 1 and 2, then incorporated into one TSP document.
+The goals and policies, street classification descriptions and maps, the financial plan and the master street plan maps in the TSP were adopted as part of the Comprehensive Plan by City Council in 2016. The TSP was adopted concurrently with the Comprehensive Plan, but published under a separate cover. Stage 3 Update was adopted separately from the Comp Plan and Stages 1 and 2, then incorporated into one TSP document.
 
 The TSP is both an implementation tool and a supporting document to the Comprehensive Plan. It contains the transportation element of the City's Public Facilities Plan, and the List of Significant Projects and Citywide Programs. The TSP also provides more detail than the Comprehensive Plan by including additional supporting information about transportation system conditions.
 
-![Relation to Other Plans_updated 10_03_14.png](/img/media/image2.png)
+![Relation to Other Plans_updated 10_03_14.png](/img/media/image2.png) IMAGE NEEDS TO BE UPDATED
 
 ## Transportation System Plan Updates
 
@@ -50,11 +50,11 @@ The first update was completed and adopted by City Council on October 13, 2004 (
 
 The second update was completed and adopted by City Council on April 5, 2007 (effective date, May 5, 2007; Ordinance No 180871). While primarily technical in nature, this update also included new policy language to implement the City's Green Street Policy.
 
-Stage 1 TSP Update was a part of the City's Comprehensive Plan update process and a component of the state's Periodic Work Plan Task 4. It included Goals, Policies, Projects and Programs and a Financial Plan. It was adopted by City Council in June 2016.
+Stage 1 TSP Update was a part of the City's Comprehensive Plan update process and a component of the state's Periodic Work Plan Task 4. It included Goals, Policies, Projects and Programs and a Financial Plan. It was adopted by City Council in June 2016 (Ordinance No. 187832).
 
-The Stage 2 TSP Update was a part of the City's Comprehensive Plan update and changes were made to implement the Comp Plan, as well as reflect adopted plans and classification changes since the last update in 2007. Periodic Work Plan Task 5 was adopted by City Council in December 2016.
+The Stage 2 TSP Update was a part of the City's Comprehensive Plan update and changes were made to implement the Comp Plan, as well as reflect adopted plans and classification changes since the last update in 2007. Periodic Work Plan Task 5 was adopted by City Council in December 2016 (Ordinance No. 187832).
 
-TSP Stage 3 TSP Update is incorporating regional information, updating geographic policies and objectives, updating objectives, adding a few policies, changes to street classification for traffic, transit and emergency response, modal plans, and other changes as identified. There is also parallel staff process to reformat the document and create a new user friendly digital document.
+TSP Stage 3 TSP Update is incorporating regional information, updating geographic policies and objectives, updating objectives, adding a few policies, changes to street classification for traffic, transit and emergency response, modal plans, and other changes as identified. A parallel staff process to reformat the document and create a new user friendly digital document. It was adopted by City Council in May 2018 (Ordinance No. 188957).
 
 ## Regulatory Framework
 
@@ -91,8 +91,6 @@ First adopted by Metro in 1983, with latest update in 2014, the Regional Transpo
 - Includes a list of major system improvements
 
 - Includes a funding plan
-
-As of August 2017 Metro and regional partners are updating the RTP with a new RTP to be issued in 2018.
 
 _Region 2040 Growth Concept_
 
@@ -148,103 +146,11 @@ Within the Comprehensive Plan and TSP, there are nine Transportation goals:
 
 9.  Airport futures
 
-Transportation related policies from the 2035 Comprehensive Plan (2015) are located in Chapter 9 (Transportation), Chapter 3 (Urban Design), Chapter 4 (Development) and Chapter 8 (Public Facilities). The TSP also includes additional sub-policies and geographic-specific policies and objectives.
-
-Chapter 9: Transportation (policies are grouped in these subject areas:)
-
-- Designing and planning
-
-- Land use, development, and placemaking
-
-- Streets as public spaces
-
-- Modal Policies
-
-- Airport Futures
-
-- System Management
-
-- Transportation Demand Management
-
-- Parking Management
-
-- Finance, Programs and Coordination
-
-Chapter 8: Public Facilities
-
-- Funding
-
-- Public Benefits
-
-- Public Rights of Way
-
-- Trails
-
-- Stormwater systems
-
-Chapter 3: Urban Form
-
-- Citywide design and development
-
-- Centers
-
-- Corridors
-
-- Transit Station Areas
-
-- City Greenways
-
-- Employment areas
-
-- Pattern Areas
-
-Chapter 4: Development
-
-- Design and Development of centers and corridors
-
-- Designing with nature
-
-Portland Bureau of Transportation also using Comprehensive Plan Chapter 2: Community Involvement for its public involvement policies.
-
-Chapter 2 has seven goals and 41 policies.
-
-Goals:
-
-- Community Involvement as a Partnership
-
-- Social Justice and Equity
-
-- Value Community Wisdom and Participation
-
-- Transparency and Accountability
-
-- Meaningful Participation
-
-- Accessible and Effective Participation
-
-- Strong Civic Infrastructure
-
-Chapter 2 policies are grouped in these major areas:
-
-- Partners in decision making
-
-- Environmental justice
-
-- Invest in education and training
-
-- Community assessment
-
-- Transparency and accountability
-
-- Community involvement program
-
-- Process design and evaluation
-
-- Information design and development
+Transportation related policies from the 2035 Comprehensive Plan (2015) are located in Chapter 9 (Transportation), Chapter 3 (Urban Design), Chapter 4 (Development) and Chapter 8 (Public Facilities). Portland Bureau of Transportation is also using Comprehensive Plan Ch. 2: Community Involvement for its public involvement policicies. The TSP also includes additional sub-policies and geographic-specific policies.
 
 ## Seven Outcomes
 
-Working with our partners at Metro, the Bureau of Planning and Sustainability, and the Oregon Department of Transportation, with direction from the Portland Plan (2012), the Climate Action Plan (2010), Health Equity & the Transportation System Plan Report (2012), and from the Comprehensive Plan Update, PBOT staff developed an outcome based approach to the TSP.
+Working with our partners at Metro, the Bureau of Planning and Sustainability, and the Oregon Department of Transportation, with direction from the Portland Plan (2012), the Climate Action Plan (2010), Health Equity & the Transportation System Plan Report (2012), and from the 2035 Comprehensive Plan, PBOT staff developed an outcome based approach to the TSP.
 
 These seven outcomes directed policy choices as well as informed the development of criteria for selecting and prioritizing TSP Projects and Programs. The Transportation System Improvements Chapter contains details on the citywide project and programs process and evaluation.
 
