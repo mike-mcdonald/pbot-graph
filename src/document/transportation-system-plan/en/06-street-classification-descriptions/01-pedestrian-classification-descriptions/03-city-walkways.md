@@ -8,8 +8,8 @@ name: City Walkways
 ---
 ### City Walkways
 
-City Walkways are intended to provide safe, convenient, and attractive pedestrian access to activities along major streets and to recreation and institutions; provide connections between neighborhoods; and provide access to transit.
+City Walkways are intended to provide safe, convenient, and attractive pedestrian access along major streets and trails with moderate level of pedestrian activity supported by current and planned land uses. These includes Community and Regional Corridors, non-frequent transit lines, and moderate-demand off-street trails.
 
-> **Land Use:** City Walkways should serve areas with dense zoning, commercial areas, and major destinations. Where auto-oriented land uses are allowed on City Walkways, site development standards should address the needs of pedestrians for access.
+> **Land Use:** City  Walkways  shouldprovide access along  major  streets toneighborhood commercial areas, andother communitydestinations. Where auto-oriented land uses are allowed on City Walkways, site development standards should address the needs of pedestrians for access.
 >
-> **Improvements:** Use the Pedestrian Design Guide to design City Walkways. Consider special design treatment for City Walkways that are also designated as Regional or Community Main Streets.
+> **Improvements:** City Walkways should have regularly-spaced marked crossings (with closer spacing in Pedestrian Districts), sidewalks on both sides, and a pedestrian realm that can accommodate moderate levels of pedestrian activity.
