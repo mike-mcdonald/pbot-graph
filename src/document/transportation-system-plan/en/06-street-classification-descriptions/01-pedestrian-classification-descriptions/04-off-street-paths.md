@@ -3,15 +3,13 @@ tree:
   - 6
   - 1
   - 4
-id: off-street-path
-name: Off-Street Paths
+id: neighborhood-walkways
+name: Neighborhood Walkways
 ---
-### Off-Street Paths
+### Neighborhood Walkways
 
-Off-Street Paths are intended to serve recreational and other walking trips.
-
-> **Function:** Use Off-Street Paths as shortcuts to link urban destinations and origins along continuous greenbelts such as rivers, park and forest areas, and other scenic corridors, and used as elements of a regional, citywide, or community recreational trail plan.
+Neighborhood Walkways are intended to provide safe and convenient connections from residential neighborhoods to Major City Walkways, City Walkways, and nearby destinations such as schools, parks, transit stops, and commercial areas, primarily using routes that have low levels ofmotor vehicle traffic or do not allow motor vehicle traffic.
 >
-> **Location:** Establish Off-Street Paths in corridors not well served by the street system. On existing rights-of-way that are not developed or likely to be developed in the near future, Off-Street Paths may be designated where needed to complete the pedestrian system.
+> **Land Use:** Neighborhood Walkways are usually located in residential or natural areas on  low-volume  Local  Service  Traffic  Streets  or  connections  that  do  not  allow  motor vehicles.
 >
-> **Improvements:** Use the Pedestrian Design Guide to design Off-Street Paths. Design Off-Street Paths as separated facilities that accommodate pedestrians and may accommodate other non-motorized vehicles.
+> **Improvements:** Neighborhood Walkways should be designed to provide a safe and comfortable walking environment, but may take many forms depending on the context. Design types may include sidewalks, shoulders, shared streets, pedestrian-only paths, multi-use paths, soft-surface trails, and ramps/stairs.
