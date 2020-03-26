@@ -27,11 +27,11 @@ In May 2016, Portland voters passed Measure 26-173, approving a 10 -cent gas tax
 A key part of the Southwest Corridor Plan is a proposed 12-mile MAX light rail line from downtown Portland to Tigard and Bridgeport Village in Tualatin, along with numerous walking, biking and roadway projects to help people access stations. This plan was created as a partnership of seven cities, Washington County and the Metro Council, along with TriMet and the Oregon Department of Transportation.
 
 The Southwest Corridor Plan includes:
-• A new 12-mile MAX line from downtown Portland to Tigard and Bridgeport Village in Tualatin;
-• Roadway, bicycle and pedestrian projects to help people get to transit;
-• A strategy to promote equitable development in the corridor when light rail is constructed;
-• A specific equitable housing strategy for Tigard and Portland along the light rail line;
-• A Shared Investment Strategy for transportation improvements that connect the corridor’s communities well beyond the proposed light rail line.
+- A new 12-mile MAX line from downtown Portland to Tigard and Bridgeport Village in Tualatin;
+- Roadway, bicycle and pedestrian projects to help people get to transit;
+- A strategy to promote equitable development in the corridor when light rail is constructed;
+- A specific equitable housing strategy for Tigard and Portland along the light rail line;
+- A Shared Investment Strategy for transportation improvements that connect the corridor’s communities well beyond the proposed light rail line.
 
 ### Growing Transit Communities Plan, 2017
 
@@ -57,9 +57,9 @@ The Portland Streetcar System Concept Plan identifies potential corridors that w
 
 The Freight Master Plan identifies capital projects, programs and activities to:
 
-• improve the reliability and efficiency of the freight network to meet increased demands and identify where to invest in system improvements;
-• develop strategies for reducing community impacts from freight movement and balance truck movement needs with those of other transportationmodes;
-• promote a multi-modal transportation system that supports long-term economic development by recognizing the role of goods delivery in supporting healthy and vibrant mixed-use centers and main streets;
+- improve the reliability and efficiency of the freight network to meet increased demands and identify where to invest in system improvements;
+- develop strategies for reducing community impacts from freight movement and balance truck movement needs with those of other transportationmodes;
+- promote a multi-modal transportation system that supports long-term economic development by recognizing the role of goods delivery in supporting healthy and vibrant mixed-use centers and main streets;
 
 The results of this plan updated the TSP, including freight classifications, freight districts, and
 projects.
