@@ -308,9 +308,9 @@ each following topic. (COMPREHENSIVE PLAN Policy 9.68)
 >
 > **c.** Cut vehicle carbon pollution by reducing low occupancy “empty miles” traveled by passenger vehicles with zero or one passengers. Prioritize vehicles and services with the least climate pollution, and electric and other zero direct emission vehicles operated by fleets and carrying multiple passengers. (COMPREHENSIVE PLAN Policy 9.68.c)
 >
-> **d.** . Make the benefits of new mobility available on an equitable basis to all segments of the community while ensuring traditionally disadvantaged communities are not disproportionately hurt by new mobility vehicles and services. This includes people with disabilities, as well as communities of color, women, and geographically underserved communities. (COMPREHENSIVE PLAN Policy 9.68.d)
+> **d.** Make the benefits of new mobility available on an equitable basis to all segments of the community while ensuring traditionally disadvantaged communities are not disproportionately hurt by new mobility vehicles and services. This includes people with disabilities, as well as communities of color, women, and geographically underserved communities. (COMPREHENSIVE PLAN Policy 9.68.d)
 >
-> **e**. Identify, prevent, and mitigate potential adverse impacts from new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.e)
+> **e** Identify, prevent, and mitigate potential adverse impacts from new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.e)
 
 **New Mobility tools:** Use a full range of tools to ensure that new mobility vehicles and services and private data communications devices installed in the City right-of- way contribute to achieving Comprehensive Plan and Transportation System Plan goals and policies. (COMPREHENSIVE PLAN Policy 9.69)
 
