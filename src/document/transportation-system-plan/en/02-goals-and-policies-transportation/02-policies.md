@@ -312,7 +312,7 @@ each following topic. (COMPREHENSIVE PLAN Policy 9.68)
 >
 > **e** Identify, prevent, and mitigate potential adverse impacts from new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.e)
 
-**New Mobility tools:** Use a full range of tools to ensure that new mobility vehicles and services and private data communications devices installed in the City right-of- way contribute to achieving Comprehensive Plan and Transportation System Plan goals and policies. (COMPREHENSIVE PLAN Policy 9.69)
+**New Mobility tools:** Use a full range of tools to ensure that new mobility vehicles and services and private data communications devices installed in the City right-of-way contribute to achieving Comprehensive Plan and Transportation System Plan goals and policies. (COMPREHENSIVE PLAN Policy 9.69)
 
 > **a:** Maintain City authority to identify and develop appropriate data sharing requirements to inform and support safe, efficient, and effective management of the transportation system. Ensure that when new mobility vehicles and services use City rights-of-way or when vehicles connect with smart infrastructure within the City they share information including, but not limited to, vehicle type, occupancy, speed, travel routes, and travel times, crashes and citations, with appropriate privacy controls. Ensure that private data communications devices installed in the City right-of-way are required to share anonymized transportation data. (COMPREHENSIVE PLAN Policy 9.69.a
 >
