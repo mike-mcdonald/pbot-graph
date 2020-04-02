@@ -104,7 +104,8 @@ Study ways to improve multimodal accessibility at the Morrison and Hawthorne bri
 ### Morrison Bridge Eastside Ramps Reconfiguration Study
 Study feasibility of realigning the Morrison Bridge off ramp to MLK to allow for through eastbound traffic on Yamhill.
 
-### North Macadam Transportation Development Strategy Update Review, update and implement recommendations from the North Macadam Transportation Development Strategy (2009) (includes earlier South Portland Circulation Study Recommendations)
+### North Macadam Transportation Development Strategy Update 
+Review, update and implement recommendations from the North Macadam Transportation Development Strategy (2009) (includes earlier South Portland Circulation Study Recommendations)
 
 ### Northwest District Access and Circulation Study
 Prepare an access and circulation study for the NW District neighborhood. Consider street reconfigurations and improvements including pedestrian and bicycle safety and access, travel directions, travel lanes, traffic control, and transit mobility and circulation. Identify and recommend changes to street classifications and identify near-term projects to improve safety, access, and circulation for all modes.
@@ -154,7 +155,8 @@ Improvements to the I-5/405 Freeway Loop must address long-term transportation a
 ### Corridor 8.2.4 3 Clark County to I-5 via Gateway, Oregon City and Tualatin (Mobility Corridors # 7,8, and 10)
 Improvements are needed in this corridor to address existing deficiencies and expected growth in travel in Clark, Multnomah and Clackamas Counties.
 
-### Powell-Division Corridor: Portland Central City to Lents Town Center and Lents Town Center to Gresham Regional Center (Mobility Corridors #19 and #20) Anticipated to experience high levels of growth in employment and population by the year 2040, a number of investments are needed in these corridors to address existing deficiencies and serve increased travel demand.
+### Powell-Division Corridor: Portland Central City to Lents Town Center and Lents Town Center to Gresham Regional Center (Mobility Corridors #19 and #20) 
+Anticipated to experience high levels of growth in employment and population by the year 2040, a number of investments are needed in these corridors to address existing deficiencies and serve increased travel demand.
  
 ### Hillsboro to Portland (Mobility Corridors #13 and #14)
 Improvements are needed in this corridor to address existing deficiencies and future growth in freight, commuters, and commercial traffic between Hillsboro’s Silicon Forest, Northern Washington County’s agricultural freight, Portland Central City, and Port of Portland facilities.
