@@ -3,7 +3,7 @@ tree:
   - 6
   - 1
   - 2
-id: major-city-walkways
+id: major-city-walkway
 name: Major City Walkways
 ---
 ### Major City Walkways

@@ -234,7 +234,7 @@ The percentage of trips taken by each of the possible modes of travel (motor veh
 
 A qualitative measure describing operational conditions within a traffic stream. A level-of-service definition generally describes these conditions in terms of such factors as speed and travel time, freedom to maneuver, traffic interruptions, comfort, convenience, and safety. LOS ratings of 'A' through 'F' describe the traffic flow characteristics on streets and highways and at intersections, as shown on the following table:
 
-![](/img/media/image2.png)
+![](/img/media/image2.jpg)
 
 **Multimodal**
 
@@ -441,8 +441,7 @@ A journey made by any mode between an origin and a destination. Trips can be cat
 
 -   Interregional trip -- A trip that has one trip end within the Portland region and the other trip end outside the Portland region.
 
--   Interdistrict trip -- A trip that starts in one Transportation District and ends in another\
-    > Transportation District.
+-   Interdistrict trip -- A trip that starts in one Transportation District and ends in another Transportation District.
 
 -   Intradistrict trip -- A trip that starts and ends within the same Transportation District.
 

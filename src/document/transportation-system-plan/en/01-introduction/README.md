@@ -40,7 +40,7 @@ The goals and policies, street classification descriptions and maps, the financi
 
 The TSP is both an implementation tool and a supporting document to the Comprehensive Plan. It contains the transportation element of the City's Public Facilities Plan, and the List of Significant Projects and Citywide Programs. The TSP also provides more detail than the Comprehensive Plan by including additional supporting information about transportation system conditions.
 
-![Relation to Other Plans_updated 10_03_14.png](/img/media/image2.png) IMAGE NEEDS TO BE UPDATED
+![Relation to Other Plans](/img/media/image17.jpg)
 
 ## Transportation System Plan Updates
 

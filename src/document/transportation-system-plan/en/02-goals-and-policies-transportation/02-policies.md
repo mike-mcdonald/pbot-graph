@@ -233,13 +233,13 @@ phase of capital projects and permitted projects along streets served by transit
 > **k:** Maintain acceptable levels of performance on state facilities and the regional arterial and throughway network, consistent with the interim standard in Table 9.2, in the development and adoption of, and amendments to, the Transportation System Plan and in legislative amendments to the Comprehensive Plan Map. (Transportation System Plan Plan Policy 9.49.k)
 >
 > **l:** In areas identified by Metro that exceed the level-of-service in Table 9.2 and are planned to, but do not currently meet the alternative performance criteria, establish an action plan that does the following:
-> -   Anticipates growth and future impacts of motor > vehicle traffic on multimodal travel in the area
-> -   Establishes strategies for mitigating the future > impacts of motor vehicles
+> -   Anticipates growth and future impacts of motor vehicle traffic on multimodal travel in the area
+> -   Establishes strategies for mitigating the future impacts of motor vehicles
 > -   Establishes performance standards for monitoring and implementing the action plan. (Transportation System Plan Policy 9.49.l)
 >
 > **m:** Develop performance measures to track progress in creating and maintaining the transportation system. (Transportation System Plan Policy 9.49.m)
 
-![](/img/media/image4.png) UPDATE BOTH TABLE 9-1 and 9-2 IMAGEs
+![Table 9-2](/img/media/image4.jpg)
 
 **Regional congestion management:** Coordinate with Metro to establish new regional multimodal mobility standards that prioritize transit, freight, and system completeness. (Comprehensive Plan Policy 9.50)
 
@@ -297,13 +297,13 @@ each following topic. (COMPREHENSIVE PLAN Policy 9.68)
 > **a:** Ensure that all new mobility vehicles and services and levels of automated vehicles advance Vision Zero by operating safely for all users, especially for vulnerable road users. Require adequate insurance coverage for operators, customers, and the public at-large by providers of new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.a)
 >
 > **b.** Ensure that new mobility vehicles and services improve active transportation and shared ride travel time reliability and system efficiency by:
-
+>
 >1.  maintaining or reducing the number of vehicle >trips during peak congestion periods;
-
+>
 >2.  reducing low occupancy vehicle trips during peak congestion periods;
-
->3.  paying for use of, and impact on, Portland's >transportation system including factors such as >congestion level, carbon footprint, vehicle miles traveled, vehicle >occupancy, and vehicle energy efficiency.
-
+>
+>3.  paying for use of, and impact on, Portland's >transportation system including factors such as congestion level, carbon footprint, vehicle miles traveled, vehicle >occupancy, and vehicle energy efficiency.
+>
 >4.  Supporting and encouraging use of public transportation (Transportation System Plan Policy Policy 9.68.b)
 >
 > **c.** Cut vehicle carbon pollution by reducing low occupancy “empty miles” traveled by passenger vehicles with zero or one passengers. Prioritize vehicles and services with the least climate pollution, and electric and other zero direct emission vehicles operated by fleets and carrying multiple passengers. (COMPREHENSIVE PLAN Policy 9.68.c)
@@ -317,7 +317,7 @@ each following topic. (COMPREHENSIVE PLAN Policy 9.68)
 > **a:** Maintain City authority to identify and develop appropriate data sharing requirements to inform and support safe, efficient, and effective management of the transportation system. Ensure that when new mobility vehicles and services use City rights-of-way or when vehicles connect with smart infrastructure within the City they share information including, but not limited to, vehicle type, occupancy, speed, travel routes, and travel times, crashes and citations, with appropriate privacy controls. Ensure that private data communications devices installed in the City right-of-way are required to share anonymized transportation data. (COMPREHENSIVE PLAN Policy 9.69.a
 >
 > **b:** Design and manage the mobility zone, Curb/flex Zone, and traffic control devices to limit speeds to increase safety, to minimize cut-through traffic, evaluate future demand for pick-up and drop-off zones, and to prioritize automated electric vehicles carrying more passengers in congested times and locations. (COMPREHENSIVE PLAN Policy 9.69.b)
-
+>
 > **c:** Evaluate the public cost and benefit of investments in wayside communication systems serving new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.69.c)
 >
 > **d.** Develop sustainable user-pays funding mechanisms to support new mobility vehicle infrastructure and service investments, transportation system maintenance, and efficient system management.(COMPREHENSIVE PLAN Policy 9.69.d)
