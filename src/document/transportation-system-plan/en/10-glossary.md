@@ -40,10 +40,6 @@ A cluster of uses that collectively generates many trips (e.g., school and park,
 
 Civil rights legislation enacted by Congress that mandates the development of a plan to address discrimination and equal opportunity for disabled persons in employment, transportation, public accommodation, public services, and telecommunications.
 
-**Area Permit Parking Program**
-
-A Portland Bureau of Transportation program to ensure that on-street parking associated with commercial, industrial, institutional development or large events will not spill over into adjacent residential neighborhoods. The program allows residents and firms a limited supply of permits for on-street parking and restricts on-street parking for other potential users.
-
 **Arterial**
 
 Any street that is not a Local Service Traffic Street according to the traffic classification maps in the Transportation Element of the Comprehensive Plan. Arterials include Regional Trafficways, Major City Traffic Streets, District Collectors, Neighborhood Collectors, and Traffic Access Streets.
@@ -58,10 +54,6 @@ A use that, by its nature, draws large numbers of people to it for special event
 
 Development that is either: 1) auto-related (such as gas stations and auto repair shops) or 2) auto-accommodating (by its design attracts primarily customers and employees arriving by automobile, such as drive-in restaurants).
 
-**Benchmark**
-
-A specific target or goal to be achieved in a specific timeframe. Benchmarks are used to determine the attainment of performance indicators and performance measures (defined below).
-
 **Bicycle**
 
 A vehicle having two tandem wheels, a minimum of 14 inches in diameter, propelled by human power, upon which a person or persons may ride. A three-wheeled adult tricycle is considered a bicycle. In Oregon, a bicycle is legally defined as a vehicle. Bicyclists have the same right to the roadways and must obey the same traffic laws as the operators of other vehicles.
@@ -70,21 +62,13 @@ A vehicle having two tandem wheels, a minimum of 14 inches in diameter, propelle
 
 See Neighborhood Greenway.
 
-**Bicyclist**
-
-Person riding a bicycle.
-
 **Bike Share**
 
 Bike Share is an innovative transportation program that provides users access to bicycles on a short-term basis for one-way travel within a designated service area.
 
 **Carpool**
 
-A motor vehicle carrying two or three (depending on the context) or more people, usually commuting on a regular or semi-regular basis.
-
-**Car Sharing**
-
-An organization consisting of a group of individuals who share a fleet of cars. The purchase or lease of vehicles, fuel costs, maintenance and repair costs is borne by the organization.
+A motor vehicle carrying two, three, or more people, usually commuting on a regular or semi-regular basis.
 
 **Centers**
 
@@ -109,10 +93,6 @@ A system of distinctive pedestrian- and bicycle-friendly green streets and trail
 3.  Heritage parkways are iconic streets or segments of streets with elements such as linear parkways, scenic views, and distinctive landscaping or street design.
 
 4.  Neighborhood greenways are an extensive network of streets with low volumes of motor vehicle traffic that are prioritized for bicycles and enhanced for pedestrians, working in conjunction with the rest of the City Greenways system to extend the system into all neighborhoods.
-
-**Collector of Regional Significance**
-
-As designated in the 2000 Regional Transportation Plan, a route that connects the regional arterial system and the local system by collecting and distributing neighborhood traffic to arterial streets. Collectors of regional significance have three purposes: 1) They ensure adequate access to the primary and secondary land use components of the 2040 Growth Concept; 2) They allow dispersion of arterial traffic over a number of lesser facilities where an adequate local network exists; 3) They help define appropriate collector level movement between jurisdictions. (Source: 2000 RTP)
 
 **Collector Street**
 
@@ -150,10 +130,6 @@ A vehicle that communicates with the Internet, other vehicles, wayside systems a
 
 The area of public right-of-way adjacent to the curb that can be used for a wide variety of mobility and access functions, including but not limited to vehicle lanes, bike lanes, curb extensions, transit platforms, street trees, loading zones, on-street parking, bike corrals, and street seats.
 
-**Early Bird Parking**
-
-Parking that is provided to encourage its use primarily by commuters. Typically, the pricing strategy is to offer a lower all-day rate if the parker arrives before a certain time in the morning.
-
 **Electric Vehicle**
 
 An electric vehicle (EV), also referred to as an electric drive vehicle, is a vehicle which uses one or more electric motors for propulsion. Depending on the type of vehicle, motion may be provided by wheels or propellers driven by rotary motors, or in the case of tracked vehicles, by linear motors.
@@ -161,10 +137,6 @@ An electric vehicle (EV), also referred to as an electric drive vehicle, is a ve
 **Emergency Response Vehicles**
 
 Vehicles employed in responding to emergencies. Examples of emergency response vehicles include fire apparatus, ambulances, and police cars.
-
-**Employer Commute Options (ECO)**
-
-DEQ ECO program required employers with more than 100 employees to provide commute options to employees designed to reduce the number of cars driven to work in Portland and surrounding areas.
 
 **Environmental Impact Statement**
 
@@ -177,10 +149,6 @@ Fleet, fully Automated Vehicles that are Electric and Shared.
 **Freight**
 
 Raw and bulk materials and products that require value-adding or warehousing.
-
-**Freight Intermodal Facility**
-
-An intercity facility where freight is transferred between two or more modes (e.g., truck to rail, rail to ship, truck to air, etc.).
 
 **Frequent Service (Trimet)**
 
@@ -217,10 +185,6 @@ Any vehicle carrying two or more persons, including the driver. An HOV could be 
 **Historically Marginalized Communities**
 
 Communities included as part of the 2018 RTP Transportation Equity Assessment include: People of Color; People with Lower-Incomes; People with Limited English Proficiency; Older Adults; Young Persons
-
-**Home-Based Work Trip Attractions**
-
-The trips made by commuters from their homes to their places of work.
 
 **Infrastructure**
 
@@ -276,10 +240,6 @@ A qualitative measure describing operational conditions within a traffic stream.
 
 Having a variety of modes available for any given trip, such as being able to walk, ride a bicycle, take a bus, or drive to a certain destination. In a transportation system, multimodal means providing for many modes within a single transportation corridor.
 
-**National Ambient Air Quality Standards (NAAQs)**
-
-Air quality standards for a variety of pollutants.
-
 **Neighborhood**
 
 For the TSP classification system, a neighborhood is an area bounded by Major City Traffic Streets, District Collectors, and/or Neighborhood Collectors.
@@ -292,13 +252,12 @@ Neighborhood greenways are an extensive network of streets with low volumes of m
 
 Main streets that connect neighborhoods with each other and to other parts of the city. They support neighborhood business districts and provide housing opportunities close to local services, amenities, and transit lines. They are streets that include a mix of commercial and higher-density housing development. They have less intense development and transportation function than Civic Corridors.
 
+**New Mobility**
+Transportation vehicles and services that are enabled or transformed by digital technology. This includes but is not limited to bike share, scooter share, and car share, services such as ride hailing and urban delivery options, as well as connected vehicles and autonomous vehicles.
+
 **Objectives**
 
 These are specific statements that carry out a plan in the short term. Objectives help assess incremental progress toward achieving the broader purposes expressed in goals and policies.
-
-**Obstruction**
-
-Something that hinders from passage, action, or operation.
 
 **Oregon Department of Transportation (ODOT)**
 
@@ -310,7 +269,7 @@ The 19 goals that provide a foundation for the State's land use planning program
 
 **Paratransit**
 
-On-demand non-fixed route service that serves special transit markets, including disabled populations unable to use regular transit service. Other examples include demand-responsive (e.g., dial-a-ride) and contracted fixed-route service.
+Typically non-fixed route, door-to-destination service that serves specific transit markets, including disabled and senior populations to supplement or as an alternative to regular transit service. Other examples include demand-responsive (e.g., dial-a-ride) service and community shuttles to fixed destinations, such as grocery stores.
 
 **Park-and-Ride Facility**
 
@@ -386,25 +345,13 @@ A regional functional plan regulating transportation in the Metro region, as man
 
 The 20-year transportation plan developed by Metro to guide transportation in the region. The RTP is the region's transportation system plan that is required by the Transportation Planning Rule.
 
-**Rideshare**
-
-A motor vehicle carrying two or more people for any trip purpose, including work, shopping, etc., but not on a regular schedule.
-
 **Right-of-Way (ROW)**
 
 A public area that allows for the passage of people or goods. Right-of-way includes passageways such as freeways, streets, bicycle and pedestrian off-street paths, and alleys. A public right-of-way is one that is dedicated or deeded to the public for public use and is under the control of a public agency.
 
-**Shared Residential Street**
-
-Shared residential street is a low-traffic street where all modes of travel mix within the paved roadway.
-
 **Shared Roadway Bikeway**
 
 Shared roadway bikeway is a facility type identified in the Portland Bicycle Plan for 2030, used on lower volume roadways where bicycles mix with motor vehicles.
-
-**State Implementation Plan (SIP)**
-
-State plan for achieving air quality goals to ensure compliance with the requirements of the federal Clean Air Act.
 
 **Speed Cushion**
 
@@ -480,7 +427,7 @@ Strategies and techniques for increasing the efficiency, safety, or level-of-ser
 
 **Transportation System Plan (TSP)**
 
-A plan for one or more transportation facilities that are planned, developed, operated, and maintained in a coordinated manner to supply continuity of movement between modes and within and between geographical and jurisdictional areas.
+Required by the state Transportation Planning Rule, a TSP describes a transportation system and outlines projects, programs, and policies to meet its needs now and in the future based on the community’s aspirations. A TSP typically serves as the transportation component of the local comprehensive plan.
 
 **TriMet**
 
