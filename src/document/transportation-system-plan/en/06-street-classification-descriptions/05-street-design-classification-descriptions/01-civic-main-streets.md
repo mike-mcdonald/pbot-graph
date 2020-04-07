@@ -11,9 +11,9 @@ name: Civic Main Streets
 Civic Main Streets serve people throughout the City and are designed to emphasize multimodal access to major activity centers.
 
 > **Land Use:** Civic Main Streets are segments of Civic Corridors located within the Central City, Regional Centers, Town Centers, Neighborhood Centers, and other areas of intensive commercial activity. Development consists of a mix of uses that are oriented to the street.
-
+>
 > **Lanes:** Civic Main Streets typically include two to four vehicle lanes, with additional turning lanes as needed. Lanes may be dedicated as transit-only or business-access-transit lanes if needed to improve transit speed and reliability.
-
+>
 > **Width:** Civic Main Streets generally feature a wider right-of-way than Neighborhood Main Streets and are more often able to provide the desired space for each mode and function.
 >
 > **Function:** Civic Main Streets should emphasize pedestrian access to adjacent land uses while also accommodating access and mobility for other modes.

@@ -93,6 +93,10 @@ name: Transportation Policies
 
 **Public transportation:** Coordinate with public transit agencies to create conditions that make transit the preferred mode of travel for trips that are not made by walking or bicycling. (Comprehensive Plan Policy 9.22)
 
+> **a:** Consider and incorporate transit priority treatments, such as those in The Enhanced
+Transit Corridors Plan, to improve transit speed and reliability during the planning and design
+phase of capital projects and permitted projects along streets served by transit lines (Transportation System Plan Policy 9.22.a)
+
 **Transportation to job centers:** Promote and enhance transit to be more convenient and economical than the automobile for people traveling more than three miles to and from the Central City and Gateway. Enhance regional access to the Central City and access from Portland to other regional job centers. (Comprehensive Plan Policy 9.23)
 
 **Transit service:** In partnership with TriMet, develop a public transportation system that conveniently, safely, comfortably, and equitably serves residents and workers 24 hours a day, seven days a week. (Comprehensive Plan Policy 9.24)
@@ -229,13 +233,13 @@ name: Transportation Policies
 > **k:** Maintain acceptable levels of performance on state facilities and the regional arterial and throughway network, consistent with the interim standard in Table 9.2, in the development and adoption of, and amendments to, the Transportation System Plan and in legislative amendments to the Comprehensive Plan Map. (Transportation System Plan Plan Policy 9.49.k)
 >
 > **l:** In areas identified by Metro that exceed the level-of-service in Table 9.2 and are planned to, but do not currently meet the alternative performance criteria, establish an action plan that does the following:
-> -   Anticipates growth and future impacts of motor > vehicle traffic on multimodal travel in the area
-> -   Establishes strategies for mitigating the future > impacts of motor vehicles
+> -   Anticipates growth and future impacts of motor vehicle traffic on multimodal travel in the area
+> -   Establishes strategies for mitigating the future impacts of motor vehicles
 > -   Establishes performance standards for monitoring and implementing the action plan. (Transportation System Plan Policy 9.49.l)
 >
 > **m:** Develop performance measures to track progress in creating and maintaining the transportation system. (Transportation System Plan Policy 9.49.m)
 
-![](/img/media/image4.png)
+![Table 9-2](/img/media/image4.jpg)
 
 **Regional congestion management:** Coordinate with Metro to establish new regional multimodal mobility standards that prioritize transit, freight, and system completeness. (Comprehensive Plan Policy 9.50)
 
@@ -283,31 +287,39 @@ Coordinate with state and federal agencies, local and regional governments, spec
 
 **Funding:** Encourage the development of a range of stable transportation funding sources that provide adequate resources to build and maintain an equitable and sustainable transportation system. (Comprehensive Plan Policy 9.67)
 
-### Connected and Automated Vehicles Policies
-**Connected and automated vehicles priorities and outcomes**: Prioritize connected and automated vehicles that are fleet/shared ownership, fully automated, electric and, for passenger vehicles, shared by multiple passengers (known by the acronym FAVES). Develop and implement strategies for each following topic. (Transportation System Plan Policy 9.68)
+### New Mobility Policies
+**New mobility priorities and outcomes**:  Facilitate new mobility vehicles and services with the
+lowest climate and congestion impacts and greatest equity benefits; with priority to vehicles
+that are fleet/shared ownership, fully automated, electric and, for passenger vehicles, shared
+by multiple passengers (known by the acronym FAVES). Develop and implement strategies for
+each following topic. (COMPREHENSIVE PLAN Policy 9.68)
 
-> **a:** Ensure that all levels of automated vehicles advance Vision Zero by operating safely for all users, especially for vulnerable road users. Require adequate insurance coverage for operators, customers, and the public at-large by providers of connected and autonomous vehicles. (Transportation System Plan Policy 9.68.a)
+> **a:** Ensure that all new mobility vehicles and services and levels of automated vehicles advance Vision Zero by operating safely for all users, especially for vulnerable road users. Require adequate insurance coverage for operators, customers, and the public at-large by providers of new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.a)
 >
-> **b.** Ensure that connected and automated vehicles improve travel time reliability and system efficiency by:
+> **b.** Ensure that new mobility vehicles and services improve active transportation and shared ride travel time reliability and system efficiency by:
+>
 >1.  maintaining or reducing the number of vehicle >trips during peak congestion periods;
+>
 >2.  reducing low occupancy vehicle trips during peak congestion periods;
->3.  paying for use of, and impact on, Portland's >transportation system including factors such as >congestion level, vehicle miles traveled, vehicle >occupancy, and vehicle energy efficiency.
+>
+>3.  paying for use of, and impact on, Portland's >transportation system including factors such as congestion level, carbon footprint, vehicle miles traveled, vehicle >occupancy, and vehicle energy efficiency.
+>
 >4.  Supporting and encouraging use of public transportation (Transportation System Plan Policy Policy 9.68.b)
 >
-> **c.** Cut vehicle carbon pollution by reducing low occupancy "empty miles" traveled by passenger vehicles with zero or one passengers. Prioritize electric and other zero direct emission vehicles operated by fleets and carrying multiple passengers. (Transportation System Plan Policy Policy 9.68.c)
+> **c.** Cut vehicle carbon pollution by reducing low occupancy “empty miles” traveled by passenger vehicles with zero or one passengers. Prioritize vehicles and services with the least climate pollution, and electric and other zero direct emission vehicles operated by fleets and carrying multiple passengers. (COMPREHENSIVE PLAN Policy 9.68.c)
 >
-> **d.** Make the benefits of automated mobility available on an equitable basis to all segments of the community while ensuring traditionally disadvantaged communities are not disproportionately hurt by connected and autonomous vehicle use. This includes people with disabilities, as well as communities of color, women, and geographically underserved communities. (Transportation System Plan Policy Policy 9.68.d)
+> **d.** Make the benefits of new mobility available on an equitable basis to all segments of the community while ensuring traditionally disadvantaged communities are not disproportionately hurt by new mobility vehicles and services. This includes people with disabilities, as well as communities of color, women, and geographically underserved communities. (COMPREHENSIVE PLAN Policy 9.68.d)
 >
-> **e**. Identify, prevent, identify, and mitigate potential adverse impacts from connected and automated vehicles. (Transportation System Plan Policy Policy 9.68.e)
+> **e** Identify, prevent, and mitigate potential adverse impacts from new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.68.e)
 
-**Connected and automated vehicles tools:** Use a full range of tools to ensure that connected and automated vehicles and private data communications devices installed in the City right of way contribute to achieving Comprehensive Plan and Transportation System Plan goals and policies. (Transportation System PlanPolicy 9.69)
+**New Mobility tools:** Use a full range of tools to ensure that new mobility vehicles and services and private data communications devices installed in the City right-of-way contribute to achieving Comprehensive Plan and Transportation System Plan goals and policies. (COMPREHENSIVE PLAN Policy 9.69)
 
-> **a:** Maintain City authority to identify and develop appropriate data sharing requirements to inform and support safe, efficient, and effective management of the transportation system. Ensure that when connected and automated vehicles use City rights-of-way or when vehicles connect with smart infrastructure within the City they share information including, but not limited to, vehicle type, occupancy, speed, travel routes, and travel times, with appropriate privacy controls. Ensure that private data communications devices installed in the City right of way are required to share anonymized transportation data. (Transportation System Plan Policy 9.69.a)
+> **a:** Maintain City authority to identify and develop appropriate data sharing requirements to inform and support safe, efficient, and effective management of the transportation system. Ensure that when new mobility vehicles and services use City rights-of-way or when vehicles connect with smart infrastructure within the City they share information including, but not limited to, vehicle type, occupancy, speed, travel routes, and travel times, crashes and citations, with appropriate privacy controls. Ensure that private data communications devices installed in the City right-of-way are required to share anonymized transportation data. (COMPREHENSIVE PLAN Policy 9.69.a
 >
-> **b:** Design and manage the mobility zone, curb zone, and traffic control devices, e.g. to limit speeds to increase safety, to minimize cut-through traffic, evaluate future demand for pick-up and drop-off zones, and to prioritize automated electric vehicles carrying more passengers in congested times and locations. (Transportation System Plan Policy 9.69.b)
+> **b:** Design and manage the mobility zone, Curb/flex Zone, and traffic control devices to limit speeds to increase safety, to minimize cut-through traffic, evaluate future demand for pick-up and drop-off zones, and to prioritize automated electric vehicles carrying more passengers in congested times and locations. (COMPREHENSIVE PLAN Policy 9.69.b)
 >
-> **c:** Evaluate the public cost and benefit of investments in wayside communication systems serving connected and automated vehicles. Develop a criteria-driven automated vehicle wayside infrastructure investment plan. (Transportation System Plan Policy 9.69.c)
+> **c:** Evaluate the public cost and benefit of investments in wayside communication systems serving new mobility vehicles and services. (COMPREHENSIVE PLAN Policy 9.69.c)
 >
-> **d.** Develop sustainable user-pays funding mechanisms to support connected and automated vehicle infrastructure and service investments, transportation system maintenance, and efficient system management. (Transportation System Plan Policy 9.69.d)
+> **d.** Develop sustainable user-pays funding mechanisms to support new mobility vehicle infrastructure and service investments, transportation system maintenance, and efficient system management.(COMPREHENSIVE PLAN Policy 9.69.d)
 >
-> **e.** Ensure that automated vehicles and vehicles that connect to smart City infrastructure, and private data communications devices installed in the City right of way, help pay for infrastructure and service investments, and support system reliability and efficiency. Develop a tiered pricing structure that reflects vehicle impacts on the transportation system, including factors such as congestion level, vehicle miles traveled, vehicle occupancy, and vehicle energy efficiency. (Transportation System Plan Policy 9.69.e)
+> **e.** Ensure that new mobility vehicles and services that connect to smart city infrastructure, and private data communications devices installed in the City right-ofway, help pay for infrastructure and service investments, and support system reliability and efficiency. Develop a tiered pricing structure that reflects vehicle and service impacts on the transportation system, including factors such as congestion level, carbon footprint, vehicle miles traveled, vehicle occupancy, and vehicle energy efficiency. (COMPREHENSIVE PLAN Policy9.69.e)
