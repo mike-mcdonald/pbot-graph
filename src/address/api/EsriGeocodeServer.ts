@@ -2,11 +2,11 @@ import qs from 'querystring';
 
 import axios from 'axios';
 
-import { IAddressSearchAPI } from './IAddressSearchAPI';
+import { AddressSearchAPI } from '../types';
 import { AddressCandidate } from '@/address/types';
 
-export class ESRIGeocodeServer implements IAddressSearchAPI {
-  async search(query: string, options?: any): Promise<AddressCandidate[]> {
+export class ESRIGeocodeServer implements AddressSearchAPI {
+  async search(query: string, options?: { city?: string }): Promise<AddressCandidate[]> {
     let body = {
       'Single Line Input': query,
       City: 'Portland',

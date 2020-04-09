@@ -34,3 +34,7 @@ export type Address = {
   type?: string;
   county?: string;
 };
+
+export interface AddressSearchAPI {
+  search(query: string, options?: { city?: string }): Promise<AddressCandidate[]>;
+}

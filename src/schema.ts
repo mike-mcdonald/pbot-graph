@@ -4,10 +4,11 @@ import { GraphQLSchema, GraphQLInt } from 'graphql';
 import { GraphQLFloat, GraphQLString } from 'graphql';
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 
-import { streetType, getStreet, getStreets } from './street';
-import { addressType, getCandidates } from './address';
+import { streetType, getStreet, getStreets, Street } from './street';
+import { addressType, searchAddress, searchTaxLot } from './address';
 import { sectionType, getDocument, Section } from './document';
-import { projectType, getProjectsById, getProjectsByBBox } from './project';
+import { projectType, getProjectsById, getProjectsByBBox, Project } from './project';
+import { Address } from './address/types';
 
 /**
  * This is the type that will be the root of our query, and the
@@ -23,6 +24,7 @@ import { projectType, getProjectsById, getProjectsByBBox } from './project';
  */
 const queryType = new GraphQLObjectType({
   name: 'Query',
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
     document: {
       type: GraphQLList(sectionType),
@@ -48,8 +50,25 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { search, city }) => {
-        return await getCandidates(search, city);
+      resolve: async (root, { search, city }): Promise<Array<Address>> => {
+        return await searchAddress(search, city);
+      }
+    },
+    taxLot: {
+      type: GraphQLList(addressType),
+      description: 'Use portlandmaps.com assessor API to search Portland',
+      args: {
+        search: {
+          description: 'search string to pass to the geocoding APIs',
+          type: GraphQLString
+        },
+        city: {
+          description: 'Limit the results to a specific city.',
+          type: GraphQLString
+      }
+    },
+      resolve: async (root, { search, city }): Promise<Array<Address>> => {
+        return await searchTaxLot(search, city);
       }
     },
     project: {
