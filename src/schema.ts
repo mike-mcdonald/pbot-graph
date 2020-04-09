@@ -61,10 +61,8 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: (root, { id }) => {
-        if (id) {
-          return getProjectsById(id);
-        }
+      resolve: (root, { id }): Promise<Array<Project>> => {
+        return getProjectsById(id);
       }
     },
     projects: {
@@ -80,14 +78,14 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }) => {
+      resolve: (root, { bbox, spatialReference }): Promise<Array<Project> | null> | undefined => {
         if (bbox) {
           return getProjectsByBBox(bbox, spatialReference);
         }
       }
     },
     street: {
-      type: streetType,
+      type: GraphQLList(streetType),
       description: 'Find a street in Portland by a PBOT planning ID',
       args: {
         id: {
@@ -95,7 +93,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: (root, { id }) => {
+      resolve: (root, { id }): Promise<Street | null> | undefined => {
         if (id) {
           return getStreet(id);
         }
@@ -114,7 +112,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }) => {
+      resolve: (root, { bbox, spatialReference }): Promise<Array<Street> | null> | undefined => {
         if (bbox) {
           return getStreets(bbox, spatialReference);
         }
