@@ -65,8 +65,8 @@ const queryType = new GraphQLObjectType({
         city: {
           description: 'Limit the results to a specific city.',
           type: GraphQLString
-      }
-    },
+        }
+      },
       resolve: async (root, { search, city }): Promise<Array<Address>> => {
         return await searchTaxLot(search, city);
       }
