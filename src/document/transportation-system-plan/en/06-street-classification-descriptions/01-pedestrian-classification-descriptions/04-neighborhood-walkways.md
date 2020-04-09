@@ -3,7 +3,7 @@ tree:
   - 6
   - 1
   - 4
-id: neighborhood-walkways
+id: neighborhood-walkway
 name: Neighborhood Walkways
 ---
 ### Neighborhood Walkways

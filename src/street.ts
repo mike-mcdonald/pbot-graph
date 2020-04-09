@@ -49,6 +49,7 @@ export type Classification = {
 export const classificationType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Classification',
   description: 'An object describing the combined classifications of a street in the City of Portland',
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
     traffic: {
       type: GraphQLString,
@@ -92,6 +93,7 @@ export const classificationType: GraphQLObjectType = new GraphQLObjectType({
 export const streetType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Street',
   description: 'A segment in the City of Portland',
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
     id: {
       type: GraphQLNonNull(GraphQLString),
@@ -268,10 +270,12 @@ export async function getStreet(id: string): Promise<Street | null> {
     });
 
     if (res.status == 200 && res.data && res.data.features) {
-      const data = res.data.features[0];
+      const data = res.data.features;
 
       if (data) {
-        return parseStreet(data);
+        return data.map((value: Feature) => {
+          return parseStreet(value);
+        });
       }
     }
   }
