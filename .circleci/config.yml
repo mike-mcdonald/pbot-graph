@@ -134,7 +134,7 @@ workflows:
             branches:
               only:
                 - master
-                - dev
+                - develop
       - build_package:
           requires:
             - install_package_deps
@@ -142,7 +142,7 @@ workflows:
             branches:
               only:
                 - master
-                - dev
+                - develop
       - build_image:
           requires:
             - build_package
@@ -150,7 +150,6 @@ workflows:
             branches:
               only:
                 - master
-                - dev
   release:
     jobs:
       - push_image:
