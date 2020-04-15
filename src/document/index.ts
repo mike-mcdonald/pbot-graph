@@ -1,7 +1,32 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } from 'graphql';
 
+import fse from 'fs-extra';
 import Metalsmith, { Files } from 'metalsmith';
 import markdown from 'metalsmith-markdown';
+import git from 'nodegit';
+import path from 'path';
+
+const database = JSON.parse(fse.readFileSync(path.resolve(__dirname, './documents.json'), 'utf8'));
+
+for (const document of Object.keys(database)) {
+  const dir = path.resolve(__dirname, document);
+
+  fse.exists(dir, exists => {
+    if (!exists) {
+      git.Clone.clone(database[document].repository, dir, {
+        fetchOpts: {
+          callbacks: {
+            certificateCheck: (): number => {
+              // github will fail cert check on some OSX machines
+              // this overrides that check
+              return 0;
+            }
+          }
+        }
+      });
+    }
+  });
+}
 
 export type Language = {
   code: string;
@@ -47,15 +72,22 @@ export const sectionType: GraphQLObjectType = new GraphQLObjectType({
   })
 });
 
+let refreshing = false;
+
 export const getDocument = (documentName: string): Promise<Section[]> =>
   new Promise<Section[]>((resolve, reject) => {
+    if (Object.keys(database).findIndex(value => value === documentName) == -1) {
+      reject(new Error(`No document named ${documentName} in list of documents.`));
+    }
+
     Metalsmith(__dirname)
-      .source(`./${documentName}`)
+      .source(path.resolve(__dirname, documentName, database[documentName].subDir))
+      .ignore('.git')
       .destination(`./build/${documentName}`)
-      .clean(false) // do not clean destination
+      .clean(true) // do not clean destination
       // directory before new build
       .use(markdown())
-      .build(function (err: Error | null, files: Files) {
+      .build((err: Error | null, files: Files) => {
         if (err) reject(err);
 
         const sections = new Array<Section>();
@@ -83,4 +115,29 @@ export const getDocument = (documentName: string): Promise<Section[]> =>
 
         resolve(sections);
       });
+
+    if (!refreshing) {
+      refreshing = true;
+      let repository: git.Repository;
+      git.Repository.open(path.resolve(__dirname, documentName))
+        .then(
+          (repo): Promise<void> => {
+            repository = repo;
+            return repository.fetchAll({
+              callbacks: {
+                certificateCheck: (): number => {
+                  return 0;
+                }
+              }
+            });
+          }
+        )
+        .then(
+          (): Promise<git.Oid> => {
+            refreshing = false;
+            const branch = database[documentName].branch;
+            return repository.mergeBranches(branch, `origin/${branch}`);
+          }
+        );
+    }
   });
