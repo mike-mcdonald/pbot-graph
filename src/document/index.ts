@@ -12,7 +12,7 @@ for (const document of Object.keys(database)) {
   const dir = path.resolve(__dirname, document);
 
   fse.exists(dir, exists => {
-    const checkoutRemoteBranch = function(repo: git.Repository) {
+    const checkoutRemoteBranch = function (repo: git.Repository): Promise<void> {
       return repo
         .getBranch(database[document].branch)
         .then(reference => {
@@ -64,6 +64,7 @@ export type Section = {
 export const sectionType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Section',
   description: 'A section of text in a Portland Bureau of Transportaiton document.',
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
     id: {
       type: GraphQLString,
