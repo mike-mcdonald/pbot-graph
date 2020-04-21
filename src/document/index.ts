@@ -12,6 +12,20 @@ for (const document of Object.keys(database)) {
   const dir = path.resolve(__dirname, document);
 
   fse.exists(dir, exists => {
+    const checkoutRemoteBranch = function(repo: git.Repository) {
+      return repo
+        .getBranch(database[document].branch)
+        .then(reference => {
+          return repo.checkoutBranch(reference, {});
+        })
+        .then(() => {
+          return repo.getReferenceCommit(`refs/remotes/origin/${database[document].branch}`);
+        })
+        .then(commit => {
+          git.Reset.reset(repo, commit, 3, {});
+        });
+    };
+
     if (!exists) {
       git.Clone.clone(database[document].repository, dir, {
         fetchOpts: {
@@ -23,6 +37,12 @@ for (const document of Object.keys(database)) {
             }
           }
         }
+      }).then(repo => {
+        return checkoutRemoteBranch(repo);
+      });
+    } else {
+      git.Repository.open(dir).then(repo => {
+        return checkoutRemoteBranch(repo);
       });
     }
   });
@@ -84,11 +104,13 @@ export const getDocument = (documentName: string): Promise<Section[]> =>
       .source(path.resolve(__dirname, documentName, database[documentName].subDir))
       .ignore('.git')
       .destination(`./build/${documentName}`)
-      .clean(true) // do not clean destination
-      // directory before new build
+      .clean(true)
       .use(markdown())
       .build((err: Error | null, files: Files) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         const sections = new Array<Section>();
 
