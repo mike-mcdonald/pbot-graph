@@ -1,5 +1,6 @@
 // @flow strict
 import along from '@turf/along';
+import bboxf from '@turf/bbox';
 import distance from '@turf/distance';
 import * as turf from '@turf/helpers';
 import length from '@turf/length';
@@ -9,8 +10,9 @@ import proj4 from 'proj4';
 import ArcGISParser, { Feature } from 'terraformer-arcgis-parser';
 
 import { GeometryObject } from './geojson';
-import { getProjects, projectType, Project } from './project';
+import { getProjects, projectType, Project, getProjectsByBBox } from './project';
 import { esriGeometryType, esriGeometry } from './common/geojson';
+import { MasterStreetPlan, getMasterStreetPlansByBBox, masterStreetPlanType } from './plan/master-street-plan';
 
 const URLS = [
   'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/3',
@@ -179,6 +181,12 @@ export const streetType: GraphQLObjectType = new GraphQLObjectType({
       type: GraphQLList(projectType),
       description: 'The projects that intersect with the bounding box of this street',
       resolve: (street: Street): Promise<Project[]> => getProjects(street)
+    },
+    masterStreetPlans: {
+      type: GraphQLList(masterStreetPlanType),
+      description: 'The projects that intersect with the bounding box of this street',
+      resolve: (street: Street): Promise<MasterStreetPlan[] | null> =>
+        getMasterStreetPlansByBBox(bboxf(street.geometry), 4326)
     },
     relatedStreets: {
       type: GraphQLList(streetType),
