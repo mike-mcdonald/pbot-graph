@@ -9,6 +9,12 @@ import { addressType, searchAddress, searchTaxLot } from './address';
 import { sectionType, getDocument, Section } from './document';
 import { projectType, getProjectsById, getProjectsByBBox, Project } from './project';
 import { Address } from './address/types';
+import {
+  masterStreetPlanType,
+  getMasterStreetPlansByBBox,
+  MasterStreetPlan,
+  getMasterStreetPlansById
+} from './plan/master-street-plan';
 
 /**
  * This is the type that will be the root of our query, and the
@@ -69,6 +75,40 @@ const queryType = new GraphQLObjectType({
       },
       resolve: async (root, { search, city }): Promise<Array<Address>> => {
         return await searchTaxLot(search, city);
+      }
+    },
+    masterStreetPlan: {
+      type: GraphQLList(masterStreetPlanType),
+      description: 'Find a master street plan in Portland by id value',
+      args: {
+        id: {
+          description: 'Number that is the OBJECTID of the master street plan',
+          type: GraphQLInt
+        }
+      },
+      resolve: async (root, { id }): Promise<Array<MasterStreetPlan> | null | undefined> => {
+        if (id) {
+          return await getMasterStreetPlansById(id);
+        }
+      }
+    },
+    masterStreetPlans: {
+      type: GraphQLList(masterStreetPlanType),
+      description: 'Find master street plans in Portland by using a bounding box',
+      args: {
+        bbox: {
+          description: 'Array of numbers representing a bounding box to return streets for',
+          type: GraphQLList(GraphQLFloat)
+        },
+        spatialReference: {
+          description: 'The spatial reference well-known ID ("wkid").',
+          type: GraphQLNonNull(GraphQLInt)
+        }
+      },
+      resolve: (root, { bbox, spatialReference }): Promise<Array<MasterStreetPlan> | null> | undefined => {
+        if (bbox) {
+          return getMasterStreetPlansByBBox(bbox, spatialReference);
+        }
       }
     },
     project: {
