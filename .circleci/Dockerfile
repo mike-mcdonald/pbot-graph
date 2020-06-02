@@ -6,7 +6,7 @@ WORKDIR /home/node
 
 ADD package*.json ./
 
-RUN npm install
+ADD /node_modules/
 
 ADD ./dist dist/
 
