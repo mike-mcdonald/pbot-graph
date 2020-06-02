@@ -12,6 +12,7 @@ import ArcGISParser, { Feature } from 'terraformer-arcgis-parser';
 import { GeometryObject } from './geojson';
 import { getProjects, projectType, Project, getProjectsByBBox } from './project';
 import { esriGeometryType, esriGeometry } from './common/geojson';
+import { areaPlanType, getAreaPlansByBBox, AreaPlan } from './plan/area-plan';
 import { MasterStreetPlan, getMasterStreetPlansByBBox, masterStreetPlanType } from './plan/master-street-plan';
 
 const URLS = [
@@ -182,9 +183,14 @@ export const streetType: GraphQLObjectType = new GraphQLObjectType({
       description: 'The projects that intersect with the bounding box of this street',
       resolve: (street: Street): Promise<Project[]> => getProjects(street)
     },
+    areaPlans: {
+      type: GraphQLList(areaPlanType),
+      description: 'The area plans that intersect with the bounding box of this street',
+      resolve: (street: Street): Promise<AreaPlan[] | null> => getAreaPlansByBBox(bboxf(street.geometry), 4326)
+    },
     masterStreetPlans: {
       type: GraphQLList(masterStreetPlanType),
-      description: 'The projects that intersect with the bounding box of this street',
+      description: 'The master street plans that intersect with the bounding box of this street',
       resolve: (street: Street): Promise<MasterStreetPlan[] | null> =>
         getMasterStreetPlansByBBox(bboxf(street.geometry), 4326)
     },
