@@ -69,6 +69,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
+      - *restore_npm_cache
       - *restore_npm_build_cache
       - run:
           name: Build docker image
