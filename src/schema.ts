@@ -1,20 +1,27 @@
 // @flow strict
 
-import { GraphQLSchema, GraphQLInt } from 'graphql';
-import { GraphQLFloat, GraphQLString } from 'graphql';
-import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
-
-import { streetType, getStreet, getStreets, Street } from './street';
-import { addressType, searchAddress, searchTaxLot } from './address';
-import { sectionType, getDocument, Section } from './document';
-import { projectType, getProjectsById, getProjectsByBBox, Project } from './project';
-import { Address } from './address/types';
 import {
-  masterStreetPlanType,
+  GraphQLFloat,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLString
+} from 'graphql';
+
+import { addressType, searchAddress, searchTaxLot } from './address';
+import { Address } from './address/types';
+import { getDocument, Section, sectionType } from './document';
+import { AreaPlan, areaPlanType, getAreaPlansByBBox, getAreaPlansById } from './plan/area-plan';
+import {
   getMasterStreetPlansByBBox,
+  getMasterStreetPlansById,
   MasterStreetPlan,
-  getMasterStreetPlansById
+  masterStreetPlanType
 } from './plan/master-street-plan';
+import { getProjectsByBBox, getProjectsById, Project, projectType } from './project';
+import { getStreet, getStreets, Street, streetType } from './street';
 
 /**
  * This is the type that will be the root of our query, and the
@@ -108,6 +115,40 @@ const queryType = new GraphQLObjectType({
       resolve: (root, { bbox, spatialReference }): Promise<Array<MasterStreetPlan> | null> | undefined => {
         if (bbox) {
           return getMasterStreetPlansByBBox(bbox, spatialReference);
+        }
+      }
+    },
+    areaPlan: {
+      type: GraphQLList(areaPlanType),
+      description: 'Find a master street plan in Portland by id value',
+      args: {
+        id: {
+          description: 'Number that is the OBJECTID of the master street plan',
+          type: GraphQLInt
+        }
+      },
+      resolve: async (root, { id }): Promise<Array<AreaPlan> | null | undefined> => {
+        if (id) {
+          return await getAreaPlansById(id);
+        }
+      }
+    },
+    areaPlans: {
+      type: GraphQLList(areaPlanType),
+      description: 'Find master street plans in Portland by using a bounding box',
+      args: {
+        bbox: {
+          description: 'Array of numbers representing a bounding box to return streets for',
+          type: GraphQLList(GraphQLFloat)
+        },
+        spatialReference: {
+          description: 'The spatial reference well-known ID ("wkid").',
+          type: GraphQLNonNull(GraphQLInt)
+        }
+      },
+      resolve: (root, { bbox, spatialReference }): Promise<Array<AreaPlan> | null> | undefined => {
+        if (bbox) {
+          return getAreaPlansByBBox(bbox, spatialReference);
         }
       }
     },
