@@ -6,7 +6,7 @@ WORKDIR /home/node
 
 ADD package*.json ./
 
-ADD /node_modules/
+ADD ./node_modules node_modules/
 
 ADD ./dist dist/
 
