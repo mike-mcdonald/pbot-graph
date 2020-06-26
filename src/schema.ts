@@ -14,12 +14,8 @@ import { addressType, searchAddress, searchTaxLot } from './address';
 import { Address } from './address/types';
 import { getDocument, Section, sectionType } from './document';
 import { AreaPlan, areaPlanType, getAreaPlansByBBox, getAreaPlansById } from './plan/area-plan';
-import {
-  getMasterStreetPlansByBBox,
-  getMasterStreetPlansById,
-  MasterStreetPlan,
-  masterStreetPlanType
-} from './plan/master-street-plan';
+import { getMasterStreetPlansByBBox, getMasterStreetPlansById, masterStreetPlanType } from './plan/master-street-plan';
+import { MasterStreetPlan } from './plan/types';
 import { getProjectsByBBox, getProjectsById, Project, projectType } from './project';
 import { getStreet, getStreets, Street, streetType } from './street';
 
@@ -89,8 +85,8 @@ const queryType = new GraphQLObjectType({
       description: 'Find a master street plan in Portland by id value',
       args: {
         id: {
-          description: 'Number that is the OBJECTID of the master street plan',
-          type: GraphQLInt
+          description: 'Value that is the TranPlanID of the master street plan',
+          type: GraphQLString
         }
       },
       resolve: async (root, { id }): Promise<Array<MasterStreetPlan> | null | undefined> => {
@@ -120,11 +116,11 @@ const queryType = new GraphQLObjectType({
     },
     areaPlan: {
       type: GraphQLList(areaPlanType),
-      description: 'Find a master street plan in Portland by id value',
+      description: 'Find an area plan in Portland by planning id value',
       args: {
         id: {
-          description: 'Number that is the OBJECTID of the master street plan',
-          type: GraphQLInt
+          description: 'PBOT planning ID of the area plan',
+          type: GraphQLString
         }
       },
       resolve: async (root, { id }): Promise<Array<AreaPlan> | null | undefined> => {
