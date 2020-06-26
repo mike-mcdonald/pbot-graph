@@ -120,11 +120,11 @@ const queryType = new GraphQLObjectType({
     },
     areaPlan: {
       type: GraphQLList(areaPlanType),
-      description: 'Find a master street plan in Portland by id value',
+      description: 'Find an area plan in Portland by planning id value',
       args: {
         id: {
-          description: 'Number that is the OBJECTID of the master street plan',
-          type: GraphQLInt
+          description: 'PBOT planning ID of the area plan',
+          type: GraphQLString
         }
       },
       resolve: async (root, { id }): Promise<Array<AreaPlan> | null | undefined> => {

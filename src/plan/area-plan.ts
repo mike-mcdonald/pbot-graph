@@ -6,14 +6,14 @@ import proj4 from 'proj4';
 import { GeometryObject } from '../geojson';
 
 const PLANS_URLS = [
-  'https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/TSP_Area_Plans_Map5_WFL1/FeatureServer/0',
-  'https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/TSP_Area_Plans_Map5_WFL1/FeatureServer/1',
-  'https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/TSP_Area_Plans_Map5_WFL1/FeatureServer/2'
+  'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/26',
+  'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/27'
 ];
 
 export type AreaPlan = {
   id: string;
   name: string;
+  description: string;
   manager: string;
   requirements: string;
   adopted: string;
@@ -57,12 +57,13 @@ export async function getAreaPlansByBBox(bbox: BBox, spatialReference: number): 
         ...data.reduce((prev, feature) => {
           if (feature.properties) {
             prev.push({
-              id: feature.properties.OBJECTID,
-              name: feature.properties.Project_Name,
-              manager: feature.properties.Project_Manager,
-              requirements: feature.properties.Development_Requirements,
-              adopted: feature.properties.Adopted,
-              document: feature.properties.HyperLink,
+              id: feature.properties.TranPlanID,
+              name: feature.properties.PlanName,
+              description: feature.properties.Description,
+              manager: feature.properties.ProjectManager,
+              requirements: feature.properties.DevelopmentRequirements,
+              adopted: feature.properties.AdoptedYear,
+              document: feature.properties.DocumentLink,
               geometry: feature.geometry,
               bbox: bboxf(feature)
             });
@@ -81,7 +82,7 @@ export async function getAreaPlansByBBox(bbox: BBox, spatialReference: number): 
 /**
  * Helper function to get a streets within a bounding box.
  */
-export async function getAreaPlansById(id: number): Promise<AreaPlan[] | null> {
+export async function getAreaPlansById(id: string): Promise<AreaPlan[] | null> {
   const plans = new Array<AreaPlan>();
 
   const promises = PLANS_URLS.map(async url => {
@@ -89,7 +90,7 @@ export async function getAreaPlansById(id: number): Promise<AreaPlan[] | null> {
       .get(`${url}/query`, {
         params: {
           f: 'geojson',
-          where: `OBJECTID=${id}`,
+          where: `TranPlanID='${id}'`,
           inSR: '4326',
           outSR: '4326',
           outFields: '*'
@@ -106,12 +107,13 @@ export async function getAreaPlansById(id: number): Promise<AreaPlan[] | null> {
         ...data.reduce((prev, feature) => {
           if (feature.properties) {
             prev.push({
-              id: feature.properties.OBJECTID,
-              name: feature.properties.Project_Name,
-              manager: feature.properties.Project_Manager,
-              requirements: feature.properties.Development_Requirements,
-              adopted: feature.properties.Adopted,
-              document: feature.properties.HyperLink,
+              id: feature.properties.TranPlanID,
+              name: feature.properties.PlanName,
+              description: feature.properties.Description,
+              manager: feature.properties.ProjectManager,
+              requirements: feature.properties.DevelopmentRequirements,
+              adopted: feature.properties.AdoptedYear,
+              document: feature.properties.DocumentLink,
               geometry: feature.geometry,
               bbox: bboxf(feature)
             });
@@ -133,12 +135,16 @@ export const areaPlanType: GraphQLObjectType = new GraphQLObjectType({
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
     id: {
-      type: GraphQLNonNull(GraphQLInt),
-      description: 'An integer identifer for the plan.'
+      type: GraphQLNonNull(GraphQLString),
+      description: 'A PBOT planning ID for the plan.'
     },
     name: {
       type: GraphQLNonNull(GraphQLString),
       description: 'A machine name for the plan'
+    },
+    description: {
+      type: GraphQLString,
+      description: 'A brief, human-friendly description of the plan'
     },
     manager: {
       type: GraphQLString,
@@ -146,11 +152,11 @@ export const areaPlanType: GraphQLObjectType = new GraphQLObjectType({
     },
     requirements: {
       type: GraphQLString,
-      description: 'A URL for viewing a document associated with the plan'
+      description: 'A requirement before the plan can be developed'
     },
     adopted: {
       type: GraphQLString,
-      description: 'A URL for viewing a document associated with the plan'
+      description: 'The year that the plan was adopted'
     },
     document: {
       type: GraphQLString,
