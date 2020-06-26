@@ -152,11 +152,11 @@ export const areaPlanType: GraphQLObjectType = new GraphQLObjectType({
     },
     requirements: {
       type: GraphQLString,
-      description: 'A requirement before the plan can be developed'
+      description: 'A reference to requirements for this area plan to be implemented'
     },
     adopted: {
       type: GraphQLString,
-      description: 'The year that the plan was adopted'
+      description: 'The year in which this plan was adopted'
     },
     document: {
       type: GraphQLString,
