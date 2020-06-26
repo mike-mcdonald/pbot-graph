@@ -13,7 +13,8 @@ import { GeometryObject } from './geojson';
 import { getProjects, projectType, Project, getProjectsByBBox } from './project';
 import { esriGeometryType, esriGeometry } from './common/geojson';
 import { areaPlanType, getAreaPlansByBBox, AreaPlan } from './plan/area-plan';
-import { MasterStreetPlan, getMasterStreetPlansByBBox, masterStreetPlanType } from './plan/master-street-plan';
+import { getMasterStreetPlansByBBox, masterStreetPlanType } from './plan/master-street-plan';
+import { MasterStreetPlan } from './plan/types';
 
 const URLS = [
   'https://www.portlandmaps.com/arcgis/rest/services/Public/Transportation_System_Plan/MapServer/3',
