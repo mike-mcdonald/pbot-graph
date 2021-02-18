@@ -1,4 +1,4 @@
-FROM node:13
+FROM node:14
 
 WORKDIR /home/node
 
@@ -8,7 +8,7 @@ RUN npm install
 
 RUN npm run build
 
-FROM node:13-slim
+FROM node:14-slim
 
 ENV NODE_ENV=production
 
@@ -36,9 +36,7 @@ RUN set -ex \
 WORKDIR /home/node
 
 COPY --from=0 /home/node/node_modules node_modules/
-COPY --from=0 /home/node/dist dist/
-
-RUN chown -R node:node dist/
+COPY --from=0 --chown=node:node /home/node/dist dist/
 
 USER node
 
