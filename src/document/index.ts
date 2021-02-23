@@ -3,7 +3,7 @@ import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } from 'graph
 import fse from 'fs-extra';
 import Metalsmith, { Files } from 'metalsmith';
 import markdown from 'metalsmith-markdown';
-import git from 'nodegit';
+import git, { Reset } from 'nodegit';
 import path from 'path';
 
 const database = JSON.parse(fse.readFileSync(path.resolve(__dirname, './documents.json'), 'utf8'));
@@ -22,7 +22,7 @@ for (const document of Object.keys(database)) {
           return repo.getReferenceCommit(`refs/remotes/origin/${database[document].branch}`);
         })
         .then(commit => {
-          git.Reset.reset(repo, commit, 3, {});
+          git.Reset.reset(repo, commit, Reset.TYPE.HARD, {});
         });
     };
 
@@ -118,19 +118,22 @@ export const getDocument = (documentName: string): Promise<Section[]> =>
         Object.keys(files).forEach(key => {
           const text = files[key];
 
-          const tree: number[] = text.tree;
-
           try {
-            const section: Section = {
-              id: text.id,
-              name: text.name,
-              number: tree.pop(),
-              tree: [...tree],
-              depth: tree.length,
-              content: text.contents.toString()
-            };
+            const tree: number[] = text.tree;
 
-            sections.push(section);
+            // ignore files that aren't attached to a tree
+            if (tree) {
+              const section: Section = {
+                id: text.id,
+                name: text.name,
+                number: tree.pop(),
+                tree: [...tree],
+                depth: tree.length,
+                content: text.contents.toString()
+              };
+
+              sections.push(section);
+            }
           } catch (error) {
             console.error(`Error parsing ${key}: ${JSON.stringify(error)}`);
           }

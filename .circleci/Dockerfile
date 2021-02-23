@@ -27,7 +27,7 @@ WORKDIR /home/node
 
 ADD package*.json ./
 
-ADD /node_modules/
+COPY --from=0 /home/node/node_modules node_modules/
 
 ADD ./dist dist/
 
