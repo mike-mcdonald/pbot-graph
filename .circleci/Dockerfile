@@ -1,12 +1,4 @@
-FROM node:13
-
-WORKDIR /home/node
-
-ADD . .
-
-RUN npm install
-
-FROM node:13-slim
+FROM node:14-slim
 
 ENV NODE_ENV=production
 
