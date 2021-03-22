@@ -1,4 +1,4 @@
-import { GraphQLBoolean, GraphQLObjectType, GraphQLString, isValidNameError } from 'graphql';
+import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql';
 import axios from 'axios';
 import * as https from 'https';
 
@@ -7,6 +7,7 @@ import * as fastxml from 'fast-xml-parser';
 export type AreaPermit = {
   Code: string;
   HasPermit: boolean;
+  Zone: string;
 };
 
 const ValidParkingZones = [
@@ -39,6 +40,10 @@ export const areaPermitType: GraphQLObjectType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Licence plate being queried.'
     },
+    Zone: {
+      type: GraphQLString,
+      description: 'Permit zone being queried'
+    },
     HasPermit: {
       type: GraphQLBoolean,
       description: 'Has a valid permit.'
@@ -46,7 +51,7 @@ export const areaPermitType: GraphQLObjectType = new GraphQLObjectType({
   })
 });
 
-async function callCaleAPI(id: string): Promise<string> {
+async function callCaleAPI(id: string, zone: string): Promise<string> {
   const webServiceURL = `https://webservice.mdc.dmz.caleaccess.com/cwo2exportservice/Enforcement/5/EnforcementService.svc/get/${id}/5`;
 
   const axiosInstance = axios.create({
@@ -55,12 +60,14 @@ async function callCaleAPI(id: string): Promise<string> {
     })
   });
 
+  //console.log('ENV:AREA_PERMITS_CALE_AUTH',process.env.AREA_PERMITS_CALE_AUTH)
+
   try {
-    /*
+    /*  
     const result = await axiosInstance.get(webServiceURL, {
       headers: {
         'content-type': 'application/json',
-        Authorization: ''
+        Authorization: process.env.AREA_PERMITS_CALE_AUTH
       }
     });
     return result.data;
@@ -69,15 +76,15 @@ async function callCaleAPI(id: string): Promise<string> {
     return `<ArrayOfValidParkingData xmlns="http://schema.caleaccess.com/cwo2exportservice/Enforcement/5/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><ValidParkingData><Amount>0</Amount><Article><Id>1002</Id><Name>Residential Daily Guest</Name></Article><Code>613JFV</Code><ContainsTerminalOutOfCommunication i:nil="true"/><DateChangedUtc>2021-02-24T14:18:44</DateChangedUtc><DateCreatedUtc>2021-02-24T14:18:44</DateCreatedUtc><EndDateUtc>2021-03-27T04:59:00</EndDateUtc><IsExpired>false</IsExpired><ParkingSpace i:nil="true"/><ParkingZone><Key>778</Key><Name>Zone A</Name><Number i:nil="true"/></ParkingZone><PostPayment><PostPaymentNetworkName/><PostPaymentTransactionID i:nil="true"/><PostPaymentTransactionStatusKey i:nil="true"/></PostPayment><PurchaseDateUtc>2021-02-24T14:18:19</PurchaseDateUtc><StartDateUtc>2021-02-24T14:18:19</StartDateUtc><Tariff><Id>2501</Id><Name>Residential Daily Guest Allotment - 1.50$</Name></Tariff><Terminal><Id>Zone A</Id><Latitude/><Longitude/><ParentNode>Permit </ParentNode></Terminal><TicketNumber>14458</TicketNumber><Zone>APP Zone A</Zone></ValidParkingData></ArrayOfValidParkingData>`;
     //return `<ArrayOfValidParkingData xmlns="http://schema.caleaccess.com/cwo2exportservice/Enforcement/5/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"/>`;
   } catch {
-    return 'I\'v got a bad feeling about this.';
+    return "I'v got a bad feeling about this.";
   }
 }
 
-export async function lookupAreaPermit(id: string): Promise<AreaPermit | null> {
+export async function lookupAreaPermit(id: string, zone: string): Promise<AreaPermit | null> {
   if (id == null) {
     return null;
   } else {
-    const xmlResponse = await callCaleAPI(id);
+    const xmlResponse = await callCaleAPI(id, zone);
 
     //console.log('response', xmlResponse);
 
@@ -103,6 +110,7 @@ export async function lookupAreaPermit(id: string): Promise<AreaPermit | null> {
 
       //console.log('zone', ParkingZone);
 
+      // only allow searches vs a subset of parking zones //
       let inValidZone = false;
       if (ValidParkingZones.includes(ParkingZone)) {
         inValidZone = true;
@@ -125,12 +133,14 @@ export async function lookupAreaPermit(id: string): Promise<AreaPermit | null> {
 
       return {
         Code: id,
-        HasPermit: hasValidPermit
+        HasPermit: hasValidPermit,
+        Zone: zone
       };
     } catch {
       return {
         Code: id,
-        HasPermit: false
+        HasPermit: false,
+        Zone: zone
       };
     }
   }

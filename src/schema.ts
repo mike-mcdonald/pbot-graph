@@ -19,7 +19,8 @@ import { getMasterStreetPlansByBBox, getMasterStreetPlansById, masterStreetPlanT
 import { MasterStreetPlan } from './plan/types';
 import { getProjectsByBBox, getProjectsById, Project, projectType } from './project';
 import { getStreet, getStreets, Street, streetType } from './street';
-import { AreaPermit, areaPermitType, lookupAreaPermit } from './areapermit';
+import { AreaPermit, areaPermitType, lookupAreaPermit } from './areapermit/areapermit';
+import { AreaPermitZone, areaPermitZoneType, getAreaPermitZones } from './areapermit/areapermitzone';
 
 /**
  * This is the type that will be the root of our query, and the
@@ -223,12 +224,23 @@ const queryType = new GraphQLObjectType({
         id: {
           description: 'License plate being queried',
           type: GraphQLString
+        },
+        zone: {
+          description: 'Permit zone being queried',
+          type: GraphQLString
         }
       },
-      resolve: (root, { id }): Promise<AreaPermit | null> | undefined => {
+      resolve: (root, { id, zone }): Promise<AreaPermit | null> | undefined => {
         if (id) {
-          return lookupAreaPermit(id);
+          return lookupAreaPermit(id, zone);
         }
+      }
+    },
+    areapermitzone: {
+      type: GraphQLList(areaPermitZoneType),
+      description: 'Find an area permit by license plate',
+      resolve: (root): Promise<AreaPermitZone[] | null> | undefined => {
+        return getAreaPermitZones();
       }
     }
   })
