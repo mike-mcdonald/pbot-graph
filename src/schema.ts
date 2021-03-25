@@ -19,8 +19,8 @@ import { getMasterStreetPlansByBBox, getMasterStreetPlansById, masterStreetPlanT
 import { MasterStreetPlan } from './plan/types';
 import { getProjectsByBBox, getProjectsById, Project, projectType } from './project';
 import { getStreet, getStreets, Street, streetType } from './street';
-import { AreaPermit, areaPermitType, lookupAreaPermit } from './areapermit/areapermit';
-import { AreaPermitZone, areaPermitZoneType, getAreaPermitZones } from './areapermit/areapermitzone';
+import { AreaPermit, areaPermitType, lookupAreaPermit } from './area-permit/areapermit';
+import { AreaPermitZone, areaPermitZoneType, getAreaPermitZones } from './area-permit/areapermitzone';
 
 /**
  * This is the type that will be the root of our query, and the
