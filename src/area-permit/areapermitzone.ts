@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
 import { AreaPermitZone } from './types';
 
-export const APREA_PARKING_PERMIT_ZONES: Array<AreaPermitZone> = [
+export const AREA_PARKING_PERMIT_ZONES: Array<AreaPermitZone> = [
   {
     value: 'APP Zone A',
     text: 'Zone A'
@@ -94,5 +94,5 @@ export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
 
 export async function getAreaPermitZones(): Promise<AreaPermitZone[]> {
   //console.log('you made it this far little buckaroo.');
-  return APREA_PARKING_PERMIT_ZONES;
+  return AREA_PARKING_PERMIT_ZONES;
 }
