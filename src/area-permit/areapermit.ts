@@ -1,147 +1,108 @@
+import assert from 'assert';
+
 import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql';
 import axios from 'axios';
-import * as https from 'https';
 
 import * as fastxml from 'fast-xml-parser';
+import { AreaPermit } from './types';
+import { APREA_PARKING_PERMIT_ZONES, areaPermitZoneType } from './areapermitzone';
 
-export type AreaPermit = {
+const CALE_ENFORCEMENT_API_URL =
+  'https://webservice.mdc.dmz.caleaccess.com/cwo2exportservice/Enforcement/5/EnforcementService.svc';
+
+/* eslint-disable @typescript-eslint/naming-convention */
+type CaleParkingData = {
   Code: string;
-  HasPermit: boolean;
+  StartDateUtc: string;
+  EndDateUtc: string;
   Zone: string;
 };
-
-const ValidParkingZones = [
-  'APP Zone A',
-  'APP Zone B',
-  'APP Zone C',
-  'APP Zone D',
-  'APP Zone E',
-  'APP Zone F',
-  'APP Zone G',
-  'APP Zone H',
-  'APP Zone I',
-  'APP Zone J',
-  'APP Zone K',
-  'APP Zone L',
-  'APP Zone M',
-  'APP Zone N',
-  'APP Zone R',
-  'APP Zone S',
-  'APP Zone T',
-  'APP Zone U'
-];
+/* eslint-enable @typescript-eslint/naming-convention */
 
 export const areaPermitType: GraphQLObjectType = new GraphQLObjectType({
   name: 'AreaPermit',
   description: 'AreaPermitType',
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
-    Code: {
+    licensePlate: {
       type: GraphQLString,
-      description: 'Licence plate being queried.'
+      description: 'Licence plate that owns the area parking permit.'
     },
-    Zone: {
-      type: GraphQLString,
-      description: 'Permit zone being queried'
+    zone: {
+      type: areaPermitZoneType,
+      description: 'Area parking permit zone for this permit.'
     },
-    HasPermit: {
+    isValid: {
       type: GraphQLBoolean,
-      description: 'Has a valid permit.'
+      description: 'Whether the area parking permit is valid (i.e., active, and not expired).'
     }
   })
 });
 
-async function callCaleAPI(id: string, zone: string): Promise<string> {
-  const webServiceURL = `https://webservice.mdc.dmz.caleaccess.com/cwo2exportservice/Enforcement/5/EnforcementService.svc/get/${id}/5`;
+async function callCaleAPI(id: string): Promise<string> {
+  if (!process.env.AREA_PERMIT_CALE_USERNAME || !process.env.AREA_PERMIT_CALE_PASSWORD) {
+    throw Error('No API credentials found, unable to call Cale API');
+  }
 
-  const axiosInstance = axios.create({
-    httpsAgent: new https.Agent({
-      rejectUnauthorized: false
-    })
+  const result = await axios.get(`${CALE_ENFORCEMENT_API_URL}/get/${id}/5`, {
+    auth: { username: process.env.AREA_PERMIT_CALE_USERNAME, password: process.env.AREA_PERMIT_CALE_PASSWORD },
+    headers: {
+      'content-type': 'application/json'
+    }
   });
 
-  //console.log('ENV:AREA_PERMITS_CALE_AUTH',process.env.AREA_PERMITS_CALE_AUTH)
-
-  try {
-    /*  
-    const result = await axiosInstance.get(webServiceURL, {
-      headers: {
-        'content-type': 'application/json',
-        Authorization: process.env.AREA_PERMITS_CALE_AUTH
-      }
-    });
-    return result.data;
-    */
-
-    return `<ArrayOfValidParkingData xmlns="http://schema.caleaccess.com/cwo2exportservice/Enforcement/5/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><ValidParkingData><Amount>0</Amount><Article><Id>1002</Id><Name>Residential Daily Guest</Name></Article><Code>613JFV</Code><ContainsTerminalOutOfCommunication i:nil="true"/><DateChangedUtc>2021-02-24T14:18:44</DateChangedUtc><DateCreatedUtc>2021-02-24T14:18:44</DateCreatedUtc><EndDateUtc>2021-03-27T04:59:00</EndDateUtc><IsExpired>false</IsExpired><ParkingSpace i:nil="true"/><ParkingZone><Key>778</Key><Name>Zone A</Name><Number i:nil="true"/></ParkingZone><PostPayment><PostPaymentNetworkName/><PostPaymentTransactionID i:nil="true"/><PostPaymentTransactionStatusKey i:nil="true"/></PostPayment><PurchaseDateUtc>2021-02-24T14:18:19</PurchaseDateUtc><StartDateUtc>2021-02-24T14:18:19</StartDateUtc><Tariff><Id>2501</Id><Name>Residential Daily Guest Allotment - 1.50$</Name></Tariff><Terminal><Id>Zone A</Id><Latitude/><Longitude/><ParentNode>Permit </ParentNode></Terminal><TicketNumber>14458</TicketNumber><Zone>APP Zone A</Zone></ValidParkingData></ArrayOfValidParkingData>`;
-    //return `<ArrayOfValidParkingData xmlns="http://schema.caleaccess.com/cwo2exportservice/Enforcement/5/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"/>`;
-  } catch {
-    return "I'v got a bad feeling about this.";
-  }
+  return result.data;
 }
 
-export async function lookupAreaPermit(id: string, zone: string): Promise<AreaPermit | null> {
-  if (id == null) {
-    return null;
-  } else {
-    const xmlResponse = await callCaleAPI(id, zone);
+function reduceCaleParkingData(data: CaleParkingData): AreaPermit {
+  const startDate: Date = new Date(data.StartDateUtc);
+  const endDate: Date = new Date(data.EndDateUtc);
 
-    //console.log('response', xmlResponse);
+  const currentDate = new Date();
 
-    const xmlResponseObj = fastxml.parse(xmlResponse);
+  return {
+    licensePlate: data.Code,
+    zone: APREA_PARKING_PERMIT_ZONES.find(z => z.value == data.Zone),
+    isValid: startDate <= currentDate && endDate >= currentDate
+  };
+}
 
-    try {
-      //const validateID = xmlResponseObj.ArrayOfValidParkingData.ValidParkingData.Code;
-      const StartDateUtcStr: string = xmlResponseObj.ArrayOfValidParkingData.ValidParkingData.StartDateUtc;
-      const EndDateUtcStr: string = xmlResponseObj.ArrayOfValidParkingData.ValidParkingData.EndDateUtc;
+export async function lookupAreaPermit(licensePlate: string, areaPermitZone: string): Promise<AreaPermit | null> {
+  assert.ok(licensePlate, 'Must pass a license plate to search Cale API');
+  assert.ok(areaPermitZone, 'Must pass an area parking permit zone to query');
 
-      const CurrentDate = new Date();
-      const StartDateUtc = new Date(StartDateUtcStr);
-      const EndDateUtc = new Date(EndDateUtcStr);
-      const ParkingZone: string = xmlResponseObj.ArrayOfValidParkingData.ValidParkingData.Zone;
+  const xmlResponse = await callCaleAPI(licensePlate);
 
-      //console.log('Code(ID):', id);
+  const xmlResponseObj = fastxml.parse(xmlResponse);
 
-      //console.log('CurrentDate:', CurrentDate.toISOString());
-      //console.log('StartDateUtcStr:', StartDateUtcStr);
-      //console.log('StartDateUtc:', StartDateUtc);
-      //console.log('EndDateUtcStr:', EndDateUtcStr);
-      //console.log('EndDateUtc:', EndDateUtc);
+  let returnData: AreaPermit = {
+    licensePlate,
+    zone: APREA_PARKING_PERMIT_ZONES.find(z => z.value == areaPermitZone),
+    isValid: false
+  };
 
-      //console.log('zone', ParkingZone);
+  // If no records are returned, there is no valid parking data for that license plate
+  if (!xmlResponseObj.ArrayOfValidParkingData.ValidParkingData) {
+    return returnData;
+  }
 
-      // only allow searches vs a subset of parking zones //
-      let inValidZone = false;
-      if (ValidParkingZones.includes(ParkingZone)) {
-        inValidZone = true;
-        //console.log('in the correct zone', ParkingZone);
+  // We could get multiple parking data results or only one
+  //  so we'll cast any return values as an array to reduce code duplication
+  const parkingData = Array.isArray(xmlResponseObj.ArrayOfValidParkingData)
+    ? xmlResponseObj.ArrayOfValidParkingData.ValidParkingData
+    : [xmlResponseObj.ArrayOfValidParkingData.ValidParkingData];
+
+  try {
+    returnData = parkingData.reduce((acc: AreaPermit, curr: CaleParkingData) => {
+      const permit = reduceCaleParkingData(curr);
+      if (permit.zone && permit.zone.value == areaPermitZone) {
+        acc = permit;
       }
+      return acc;
+    }, returnData);
 
-      let hasValidDate = false;
-      if (StartDateUtc <= CurrentDate && EndDateUtc >= CurrentDate) {
-        //console.log('It has a valid date.');
-        hasValidDate = true;
-      }
-
-      let hasValidPermit = false;
-      if (inValidZone && hasValidDate) {
-        hasValidPermit = true;
-      }
-
-      // SET RANDOM FOUND/NOT FOUND
-      hasValidPermit = Math.random() >= 0.5;
-
-      return {
-        Code: id,
-        HasPermit: hasValidPermit,
-        Zone: zone
-      };
-    } catch {
-      return {
-        Code: id,
-        HasPermit: false,
-        Zone: zone
-      };
-    }
+    return returnData;
+  } catch {
+    throw Error('Failed to parse Cale query result.');
   }
 }

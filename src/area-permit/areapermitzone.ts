@@ -1,102 +1,98 @@
-import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
+import { AreaPermitZone } from './types';
 
-const ValidParkingZones = [
+export const APREA_PARKING_PERMIT_ZONES: Array<AreaPermitZone> = [
   {
-    Value: 'APP Zone A',
-    Text: 'Zone A'
+    value: 'APP Zone A',
+    text: 'Zone A'
   },
   {
-    Value: 'APP Zone B',
-    Text: 'Zone B'
+    value: 'APP Zone B',
+    text: 'Zone B'
   },
   {
-    Value: 'APP Zone C',
-    Text: 'Zone C'
+    value: 'APP Zone C',
+    text: 'Zone C'
   },
   {
-    Value: 'APP Zone D',
-    Text: 'Zone D'
+    value: 'APP Zone D',
+    text: 'Zone D'
   },
   {
-    Value: 'APP Zone E',
-    Text: 'Zone E'
+    value: 'APP Zone E',
+    text: 'Zone E'
   },
   {
-    Value: 'APP Zone F',
-    Text: 'Zone F'
+    value: 'APP Zone F',
+    text: 'Zone F'
   },
   {
-    Value: 'APP Zone G',
-    Text: 'Zone G'
+    value: 'APP Zone G',
+    text: 'Zone G'
   },
   {
-    Value: 'APP Zone H',
-    Text: 'Zone H'
+    value: 'APP Zone H',
+    text: 'Zone H'
   },
   {
-    Value: 'APP Zone I',
-    Text: 'Zone I'
+    value: 'APP Zone I',
+    text: 'Zone I'
   },
   {
-    Value: 'APP Zone J',
-    Text: 'Zone J'
+    value: 'APP Zone J',
+    text: 'Zone J'
   },
   {
-    Value: 'APP Zone K',
-    Text: 'Zone K'
+    value: 'APP Zone K',
+    text: 'Zone K'
   },
   {
-    Value: 'APP Zone L',
-    Text: 'Zone L'
+    value: 'APP Zone L',
+    text: 'Zone L'
   },
   {
-    Value: 'APP Zone M',
-    Text: 'Zone M'
+    value: 'APP Zone M',
+    text: 'Zone M'
   },
   {
-    Value: 'APP Zone N',
-    Text: 'Zone N'
+    value: 'APP Zone N',
+    text: 'Zone N'
   },
   {
-    Value: 'APP Zone R',
-    Text: 'Zone R'
+    value: 'APP Zone R',
+    text: 'Zone R'
   },
   {
-    Value: 'APP Zone S',
-    Text: 'Zone S'
+    value: 'APP Zone S',
+    text: 'Zone S'
   },
   {
-    Value: 'APP Zone T',
-    Text: 'Zone T'
+    value: 'APP Zone T',
+    text: 'Zone T'
   },
   {
-    Value: 'APP Zone U',
-    Text: 'Zone U'
+    value: 'APP Zone U',
+    text: 'Zone U'
   }
 ];
-
-export type AreaPermitZone = {
-  Value: string;
-  Text: string;
-};
 
 export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
   name: 'AreaPermitZone',
   description: 'AreaPermitZoneType',
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   fields: () => ({
-    Value: {
+    value: {
       type: GraphQLString,
-      description: 'Value of Area Permit Zone.'
+      description: 'value of Area Permit Zone.'
     },
-    Text: {
+    text: {
       type: GraphQLString,
-      description: 'Readable Text for Area Permit Zone'
+      description: 'Readable text for Area Permit Zone'
     }
   })
 });
 
 export async function getAreaPermitZones(): Promise<AreaPermitZone[]> {
   //console.log('you made it this far little buckaroo.');
-  return ValidParkingZones;
+  return APREA_PARKING_PERMIT_ZONES;
 }
