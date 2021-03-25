@@ -248,5 +248,5 @@ const queryType = new GraphQLObjectType({
  */
 export default new GraphQLSchema({
   query: queryType,
-  types: [streetType, addressType, projectType, sectionType, areaPermitType]
+  types: [streetType, addressType, projectType, sectionType, areaPermitType, areaPermitZoneType]
 });
