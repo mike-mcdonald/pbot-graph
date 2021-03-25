@@ -6,6 +6,7 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
+  GraphQLScalarType,
   GraphQLSchema,
   GraphQLString
 } from 'graphql';
@@ -18,6 +19,9 @@ import { getMasterStreetPlansByBBox, getMasterStreetPlansById, masterStreetPlanT
 import { MasterStreetPlan } from './plan/types';
 import { getProjectsByBBox, getProjectsById, Project, projectType } from './project';
 import { getStreet, getStreets, Street, streetType } from './street';
+import { AreaPermit, AreaPermitZone } from './area-permit/types';
+import { areaPermitType, lookupAreaPermit } from './area-permit/area-permit';
+import { areaPermitZoneType, getAreaPermitZones } from './area-permit/area-permit-zone';
 
 /**
  * This is the type that will be the root of our query, and the
@@ -44,7 +48,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { name }): Promise<Section[]> => await getDocument(name)
+      resolve: async (_root, { name }): Promise<Section[]> => await getDocument(name)
     },
     address: {
       type: GraphQLList(addressType),
@@ -59,7 +63,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { search, city }): Promise<Array<Address>> => {
+      resolve: async (_root, { search, city }): Promise<Array<Address>> => {
         return await searchAddress(search, city);
       }
     },
@@ -76,7 +80,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { search, city }): Promise<Array<Address>> => {
+      resolve: async (_root, { search, city }): Promise<Array<Address>> => {
         return await searchTaxLot(search, city);
       }
     },
@@ -89,7 +93,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { id }): Promise<Array<MasterStreetPlan> | null | undefined> => {
+      resolve: async (_root, { id }): Promise<Array<MasterStreetPlan> | null | undefined> => {
         if (id) {
           return await getMasterStreetPlansById(id);
         }
@@ -108,7 +112,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }): Promise<Array<MasterStreetPlan> | null> | undefined => {
+      resolve: (_root, { bbox, spatialReference }): Promise<Array<MasterStreetPlan> | null> | undefined => {
         if (bbox) {
           return getMasterStreetPlansByBBox(bbox, spatialReference);
         }
@@ -123,7 +127,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (root, { id }): Promise<Array<AreaPlan> | null | undefined> => {
+      resolve: async (_root, { id }): Promise<Array<AreaPlan> | null | undefined> => {
         if (id) {
           return await getAreaPlansById(id);
         }
@@ -142,7 +146,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }): Promise<Array<AreaPlan> | null> | undefined => {
+      resolve: (_root, { bbox, spatialReference }): Promise<Array<AreaPlan> | null> | undefined => {
         if (bbox) {
           return getAreaPlansByBBox(bbox, spatialReference);
         }
@@ -157,7 +161,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: (root, { id }): Promise<Array<Project>> => {
+      resolve: (_root, { id }): Promise<Array<Project>> => {
         return getProjectsById(id);
       }
     },
@@ -174,7 +178,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }): Promise<Array<Project> | null> | undefined => {
+      resolve: (_root, { bbox, spatialReference }): Promise<Array<Project> | null> | undefined => {
         if (bbox) {
           return getProjectsByBBox(bbox, spatialReference);
         }
@@ -189,7 +193,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: (root, { id }): Promise<Street | null> | undefined => {
+      resolve: (_root, { id }): Promise<Street | null> | undefined => {
         if (id) {
           return getStreet(id);
         }
@@ -208,11 +212,32 @@ const queryType = new GraphQLObjectType({
           type: GraphQLNonNull(GraphQLInt)
         }
       },
-      resolve: (root, { bbox, spatialReference }): Promise<Array<Street> | null> | undefined => {
+      resolve: (_root, { bbox, spatialReference }): Promise<Array<Street> | null> | undefined => {
         if (bbox) {
           return getStreets(bbox, spatialReference);
         }
       }
+    },
+    areaPermit: {
+      type: GraphQLNonNull(areaPermitType),
+      description: 'Query whether a license plate has a valid area parking permit in the specified zone.',
+      args: {
+        licensePlate: {
+          description: 'License plate being queried',
+          type: GraphQLString
+        },
+        zone: {
+          description: 'Permit zone being queried. Should be a valid areaPermitZone value.',
+          type: GraphQLString
+        }
+      },
+      resolve: (_root, { licensePlate, zone }): Promise<AreaPermit | null> | undefined =>
+        lookupAreaPermit(licensePlate, zone)
+    },
+    areaPermitZone: {
+      type: GraphQLList(areaPermitZoneType),
+      description: 'The list of all area parking permit zones.',
+      resolve: (): Promise<AreaPermitZone[] | null> | undefined => getAreaPermitZones()
     }
   })
 });
@@ -223,5 +248,5 @@ const queryType = new GraphQLObjectType({
  */
 export default new GraphQLSchema({
   query: queryType,
-  types: [streetType, addressType, projectType, sectionType]
+  types: [streetType, addressType, projectType, sectionType, areaPermitType, areaPermitZoneType]
 });
