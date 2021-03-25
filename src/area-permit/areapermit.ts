@@ -73,26 +73,26 @@ export async function lookupAreaPermit(licensePlate: string, areaPermitZone: str
 
   const xmlResponse = await callCaleAPI(licensePlate);
 
-  const xmlResponseObj = fastxml.parse(xmlResponse);
-
-  let returnData: AreaPermit = {
-    licensePlate,
-    zone: AREA_PARKING_PERMIT_ZONES.find(z => z.value == areaPermitZone),
-    isValid: false
-  };
-
-  // If no records are returned, there is no valid parking data for that license plate
-  if (!xmlResponseObj.ArrayOfValidParkingData.ValidParkingData) {
-    return returnData;
-  }
-
-  // We could get multiple parking data results or only one
-  //  so we'll cast any return values as an array to reduce code duplication
-  const parkingData = Array.isArray(xmlResponseObj.ArrayOfValidParkingData)
-    ? xmlResponseObj.ArrayOfValidParkingData.ValidParkingData
-    : [xmlResponseObj.ArrayOfValidParkingData.ValidParkingData];
-
   try {
+    const xmlResponseObj = fastxml.parse(xmlResponse);
+
+    let returnData: AreaPermit = {
+      licensePlate,
+      zone: AREA_PARKING_PERMIT_ZONES.find(z => z.value == areaPermitZone),
+      isValid: false
+    };
+
+    // If no records are returned, there is no valid parking data for that license plate
+    if (!xmlResponseObj.ArrayOfValidParkingData.ValidParkingData) {
+      return returnData;
+    }
+
+    // We could get multiple parking data results or only one
+    //  so we'll cast any return values as an array to reduce code duplication
+    const parkingData = Array.isArray(xmlResponseObj.ArrayOfValidParkingData)
+      ? xmlResponseObj.ArrayOfValidParkingData.ValidParkingData
+      : [xmlResponseObj.ArrayOfValidParkingData.ValidParkingData];
+
     returnData = parkingData.reduce((acc: AreaPermit, curr: CaleParkingData) => {
       const permit = reduceCaleParkingData(curr);
       if (permit.zone && permit.zone.value == areaPermitZone) {
