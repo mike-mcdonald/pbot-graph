@@ -16,7 +16,7 @@ jobs:
           sudo apt-get update && \
           sudo apt-get install -yqq \
           build-essential \
-          krb5-config
+          libkrb5-dev
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
