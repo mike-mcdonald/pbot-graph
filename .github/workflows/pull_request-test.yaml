@@ -1,4 +1,4 @@
-name: CLI build
+name: Test pull requests
 
 on: pull_request
 

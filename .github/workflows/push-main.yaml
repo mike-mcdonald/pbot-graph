@@ -1,4 +1,4 @@
-name: CLI build
+name: Push main build
 
 on:
   push:
@@ -9,8 +9,8 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     env:
-      - REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
-      - IMAGE: graphql-server
+      REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
+      IMAGE: graphql-server
     steps:
       - uses: actions/checkout@v2
       - name: Login via Az module
