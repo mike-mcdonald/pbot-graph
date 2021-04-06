@@ -13,18 +13,14 @@ jobs:
       IMAGE: graphql-server
     steps:
       - uses: actions/checkout@v2
-      - name: Test Azure CLI
-        run: az --version
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Log in to Azure Container Registry
         env:
-            AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-            AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-            AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-            AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        run: |
-            az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-            az account set --subscription $AZURE_SUBSCRIPTION_ID
-            az acr login --name ${{ secrets.ACR_NAME }}
+          ACR_NAME: ${{ secrets.ACR_NAME }}
+        run: az acr login --name $ACR_NAME
       - name: Run Docker build
         run: docker build -t $REPOSITORY/$IMAGE:main .
       - name: Push image to repository
