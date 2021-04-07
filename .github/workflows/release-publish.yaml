@@ -50,6 +50,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: azure/setup-kubectl@v1
       - uses: azure/setup-helm@v1
+      - name: Create Kubernetes secrets
+        env:
+          PORTLANDMAPS_API_KEY: ${{ secrets.PORTLANDMAPS_API_KEY }}
+          AREA_PERMIT_CALE_USERNAME: ${{ secrets.AREA_PERMIT_CALE_USERNAME }}
+          AREA_PERMIT_CALE_PASSWORD: ${{ secrets.AREA_PERMIT_CALE_PASSWORD }}
+        run: |
+          mkdir -p chart/.secret
+          echo -n "$PORTLANDMAPS_API_KEY" > chart/.secret/PORTLANDMAPS_API_KEY
+          echo -n "$AREA_PERMIT_CALE_USERNAME" > chart/.secret/AREA_PERMIT_CALE_USERNAME
+          echo -n "$AREA_PERMIT_CALE_PASSWORD" > chart/.secret/AREA_PERMIT_CALE_PASSWORD
       - name: Login via Az module
         uses: azure/login@v1
         with:
