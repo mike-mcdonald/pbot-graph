@@ -45,8 +45,18 @@ spec:
             - name: PORTLANDMAPS_API_KEY
               valueFrom:
                 secretKeyRef:
-                    name: portlandmaps
-                    key: api-key
+                    name: {{ include "chart.fullname" . }}
+                    key: PORTLANDMAPS_API_KEY
+            - name: AREA_PERMIT_CALE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                    name: {{ include "chart.fullname" . }}
+                    key: AREA_PERMIT_CALE_USERNAME
+            - name: AREA_PERMIT_CALE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: {{ include "chart.fullname" . }}
+                    key: AREA_PERMIT_CALE_PASSWORD
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
