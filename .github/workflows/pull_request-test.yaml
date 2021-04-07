@@ -25,8 +25,7 @@ jobs:
       - name: Cache CLI dependencies
         uses: actions/cache@v2
         with:
-          path: |
-            ./node_modules
+          path: ./node_modules
           key: v1-cli-cache-${{ matrix.node-version }}-${{ hashFiles('./package-lock.json') }}
           restore-keys: v1-cli-cache-${{ matrix.node-version }}-
       - run: npm ci

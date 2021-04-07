@@ -33,7 +33,7 @@ jobs:
         run: |
           docker push $REPOSITORY/$IMAGE:latest
           docker push $REPOSITORY/$IMAGE:$IMAGE_TAG
-  
+
   deploy-release:
     name: Deploy Helm upgrade on production namespace
     needs:
@@ -45,6 +45,7 @@ jobs:
       K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE }}
       REPOSITORY: ${{ secrets.ACR_NAME }}.azurecr.io
       IMAGE: graphql-server
+      RELEASE_NAME: ${{ secrets.RELEASE_NAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: azure/setup-kubectl@v1
@@ -60,6 +61,7 @@ jobs:
           helm \
           upgrade \
           --namespace $K8S_NAMESPACE \
-          --install ${{ secrets.RELEASE_NAME }} \
+          --install \
+          $RELEASE_NAME \
           --set image.repository=$REPOSITORY/$IMAGE
           chart/
