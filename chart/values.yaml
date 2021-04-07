@@ -5,7 +5,7 @@
 replicaCount: 3
 
 image:
-  repository: pudlapps.azurecr.io/graph
+  repository: pbotapps.azurecr.io/graphql-server
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -39,15 +39,21 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/limit-rpm: "15"
-    # kubernetes.io/tls-acme: "true"
+    cert-manager.io/issuer: letsencrypt-production
   hosts:
-    - host:
+    - host: portland-tsp.com
       paths:
         - /graphql
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+    - host: pbotapps.portland.gov
+      paths:
+        - /graphql
+  tls:
+    - secretName: portland-tsp-tls
+      hosts:
+        - portland-tsp.com
+    - secretName: pbotapps-portland-gov-tls
+      hosts:
+        - pbotapps.portland.gov
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
