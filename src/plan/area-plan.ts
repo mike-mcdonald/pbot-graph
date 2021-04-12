@@ -1,8 +1,9 @@
-import { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLFloat, GraphQLInt } from 'graphql';
-import { BBox, Feature, Polygon, Geometry } from '@turf/helpers';
 import bboxf from '@turf/bbox';
-import axios from 'axios';
+import { BBox, Feature, Geometry } from '@turf/helpers';
+import { GraphQLFloat, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import proj4 from 'proj4';
+
+import axios from '../api/arcgis';
 import { GeometryObject } from '../geojson';
 
 const PLANS_URLS = [

@@ -7,6 +7,7 @@ export type AddressCandidate = {
     status?: string;
     city?: string;
     jurisdiction?: string;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     zip_code?: number;
     state?: string;
     zip4?: number;
@@ -34,7 +35,3 @@ export type Address = {
   type?: string;
   county?: string;
 };
-
-export interface AddressSearchAPI {
-  search(query: string, options?: { city?: string }): Promise<AddressCandidate[]>;
-}

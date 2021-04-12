@@ -12,7 +12,7 @@ const spatialReferenceType: GraphQLObjectType = new GraphQLObjectType({
   name: 'SpatialReference',
   description: 'An object representing a well-known projection',
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  fields: () => ({
+  fields: {
     wkid: {
       type: GraphQLInt,
       description: 'A well-known identifier for this spatial reference.'
@@ -21,14 +21,14 @@ const spatialReferenceType: GraphQLObjectType = new GraphQLObjectType({
       type: GraphQLInt,
       description: 'The latest (and greatest?) well-known identifier for this spatial reference.'
     }
-  })
+  }
 });
 
 export const locationType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Location',
   description: 'A coordinate pair, or Point',
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  fields: () => ({
+  fields: {
     x: {
       type: GraphQLNonNull(GraphQLFloat),
       description: 'The location along the x axis.'
@@ -41,5 +41,5 @@ export const locationType: GraphQLObjectType = new GraphQLObjectType({
       type: spatialReferenceType,
       description: 'The spatial reference these coordinates are in.'
     }
-  })
+  }
 });

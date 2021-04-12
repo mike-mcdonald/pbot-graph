@@ -1,9 +1,10 @@
 import bboxf from '@turf/bbox';
 import { BBox, Feature, Geometry, Polygon } from '@turf/helpers';
-import axios, { AxiosError } from 'axios';
-import { GraphQLFloat, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { AxiosError } from 'axios';
+import { GraphQLFloat, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import proj4 from 'proj4';
 
+import axios from '../api/arcgis';
 import { GeometryObject } from '../geojson';
 import { MasterStreetPlan, MasterStreetPlanFeature } from './types';
 

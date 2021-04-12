@@ -63,7 +63,7 @@ const queryType = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      resolve: async (_root, { search, city }): Promise<Array<Address>> => {
+      resolve: async (_root, { search, city }): Promise<Array<Address> | undefined> => {
         return await searchAddress(search, city);
       }
     },

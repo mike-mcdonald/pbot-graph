@@ -5,18 +5,15 @@ import proj4 from 'proj4';
 
 import { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLInt } from 'graphql';
 
+import axios, { AssessorResult, SuggestResult } from '../api/portlandmaps';
 import { locationType } from '../location';
 import { streetType, getStreets, Street } from '../street';
-import { PortlandmapsSuggest, PortlandmapsAssessor } from './api/portlandmaps';
-import { ESRIGeocodeServer } from './api/EsriGeocodeServer';
-import { Address, AddressCandidate, AddressSearchAPI } from './types';
+import { Address } from './types';
 
 export const addressType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Address',
   description: 'An address in the City of Portland',
-  // GraphQL uses Flow Types rather than Typescript, some things like the below warning are too hard to reconcile...
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  fields: () => ({
+  fields: {
     name: {
       type: GraphQLNonNull(GraphQLString),
       description: 'The full string street address.'
@@ -72,24 +69,23 @@ export const addressType: GraphQLObjectType = new GraphQLObjectType({
         return getStreets(box, 4326);
       }
     }
-  })
+  }
 });
 
-export async function searchAddress(search: string, city?: string): Promise<Address[]> {
-  let api: AddressSearchAPI = new PortlandmapsSuggest();
-  let candidates: AddressCandidate[] = [];
-
-  const options: {
-    city?: string;
-  } = {};
-
-  city ? (options.city = city) : undefined;
+export async function searchAddress(search: string, city?: string): Promise<Address[] | undefined> {
+  const body = {
+    query: search,
+    city
+  };
 
   try {
-    candidates = await api.search(search, options);
-    if (candidates)
-      return candidates.map(c => {
-        const a: Address = {
+    const res = await axios.post<SuggestResult>('/suggest/', body);
+
+    if (res.status === 200 && res.data && res.data.status === 'success') {
+      const { candidates } = res.data;
+
+      return candidates.map<Address>(c => {
+        return {
           location: c.location,
           name: c.address,
           city: c.attributes.city,
@@ -98,55 +94,40 @@ export async function searchAddress(search: string, city?: string): Promise<Addr
           type: c.attributes.type,
           county: c.attributes.county
         };
-        return a;
       });
-  } catch {
-    api = new ESRIGeocodeServer();
-    candidates = await api.search(search).catch(() => {
-      throw new Error('Error retrieving the address');
-    });
-    if (candidates)
-      return candidates.map(c => {
-        const [name, city, state, zipCode] = c.address.split(',');
-        const a: Address = {
-          location: c.location,
-          name,
-          city,
-          state,
-          zipCode: parseInt(zipCode),
-          type: 'address'
-        };
-        return a;
-      });
+    }
+  } catch (err) {
+    console.error(JSON.stringify(err));
   }
-
-  return [];
 }
 
 export async function searchTaxLot(search: string, city?: string): Promise<Address[]> {
-  const api: AddressSearchAPI = new PortlandmapsAssessor();
-  let candidates: AddressCandidate[] = [];
+  const body = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    property_id: search,
+    city
+  };
 
-  const options: {
-    city?: string;
-  } = {};
+  const res = await axios.post<AssessorResult>('/assessor/', body);
 
-  city ? (options.city = city) : undefined;
-
-  candidates = await api.search(search, options);
-  if (candidates)
-    return candidates.map(c => {
-      const a: Address = {
-        location: c.location,
-        name: c.address,
-        city: c.attributes.city,
-        state: c.attributes.state,
-        zipCode: c.attributes.zip_code,
-        type: c.attributes.type,
-        county: c.attributes.county
+  if (res.status === 200 && res.data && res.data.status === 'success') {
+    return res.data.results.map<Address>(value => {
+      return {
+        name: value.address,
+        type: 'Property',
+        location: {
+          x: value.x_web_mercator,
+          y: value.y_web_mercator,
+          spatialReference: {
+            wkid: 102100,
+            latestWkid: 3857
+          }
+        },
+        city: value.city,
+        zipCode: value.zip_code,
+        state: value.state,
+        county: value.county
       };
-      return a;
     });
-
-  return [];
+  } else throw new Error('No addresses found');
 }

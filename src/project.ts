@@ -1,11 +1,11 @@
-import axios from 'axios';
 import bbox from '@turf/bbox';
-
-import { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLFloat, GraphQLInt } from 'graphql';
-import { Street } from './street';
-import { Feature, Geometry, BBox, LineString, GeometryCollection } from '@turf/helpers';
-import { GeometryObject } from './geojson';
+import turf, { BBox, Feature, Geometry, GeometryCollection, LineString } from '@turf/helpers';
+import { GraphQLFloat, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import proj4 from 'proj4';
+
+import axios from './api/arcgis';
+import { GeometryObject } from './geojson';
+import { Street } from './street';
 
 // ESRI maps use this wkid
 proj4.defs('102100', proj4.defs('EPSG:3857'));
@@ -36,7 +36,7 @@ export type Project = {
 export const projectType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Project',
   description: 'A transportation project in the City of Portland',
-  fields: () => ({
+  fields: {
     id: {
       type: GraphQLNonNull(GraphQLString),
       description: 'The planning id of the project.'
@@ -89,7 +89,7 @@ export const projectType: GraphQLObjectType = new GraphQLObjectType({
       type: GraphQLString,
       description: ''
     }
-  })
+  }
 });
 
 function parseProject(feature: Feature): Project {
@@ -125,7 +125,7 @@ export async function getProjects(street: Street): Promise<Project[]> {
 
   for (const url of URLS) {
     const res = await axios
-      .get(`${url}/query`, {
+      .get<turf.FeatureCollection<turf.Geometry>>(`${url}/query`, {
         params: {
           f: 'geojson',
           geometryType: 'esriGeometryEnvelope',
@@ -143,11 +143,7 @@ export async function getProjects(street: Street): Promise<Project[]> {
     if (res.status == 200 && res.data && res.data.features) {
       const data: Feature<Geometry>[] = res.data.features;
 
-      projects.push(
-        ...data.map((value: Feature<Geometry>) => {
-          return parseProject(value);
-        })
-      );
+      projects.push(...data.map(value => parseProject(value)));
     }
   }
 
@@ -159,7 +155,7 @@ export async function getProjectsById(id: string): Promise<Project[]> {
 
   for (const url of URLS) {
     const res = await axios
-      .get(`${url}/query`, {
+      .get<turf.FeatureCollection<turf.Geometry>>(`${url}/query`, {
         params: {
           f: 'geojson',
           where: `TranPlanID='${id}'`,
@@ -174,11 +170,7 @@ export async function getProjectsById(id: string): Promise<Project[]> {
     if (res.status == 200 && res.data && res.data.features) {
       const data: Feature<Geometry>[] = res.data.features;
 
-      projects.push(
-        ...data.map((value: Feature<Geometry>) => {
-          return parseProject(value);
-        })
-      );
+      projects.push(...data.map(value => parseProject(value)));
     }
   }
 
