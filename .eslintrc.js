@@ -26,7 +26,11 @@ module.exports = {
         selector: 'default',
         format: ['camelCase']
       },
-
+      {
+        selector: 'variable',
+        modifiers: ['exported'],
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE']
+      },
       {
         selector: 'variable',
         format: ['camelCase', 'UPPER_CASE']
