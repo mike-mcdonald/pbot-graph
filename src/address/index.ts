@@ -82,11 +82,11 @@ export async function searchAddress(search: string, city?: string): Promise<Addr
     const res = await axios.post<SuggestResult>('/suggest/', body);
 
     if (res.status === 200 && res.data && res.data.status === 'success') {
-      const { candidates } = res.data;
+      const { candidates, spatialReference } = res.data;
 
       return candidates.map<Address>(c => {
         return {
-          location: c.location,
+          location: { x: c.location.x, y: c.location.y, spatialReference },
           name: c.address,
           city: c.attributes.city,
           state: c.attributes.state,
