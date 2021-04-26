@@ -1,10 +1,12 @@
 export type AreaPermitZone = {
-  value: string;
-  text: string;
+  id: string;
+  name: string;
+  visitorLimit: string;
+  enforcementHours: string;
 };
 
 export type AreaPermit = {
   licensePlate: string;
-  zone?: AreaPermitZone;
+  zone?: AreaPermitZone | null;
   isValid: boolean;
 };
