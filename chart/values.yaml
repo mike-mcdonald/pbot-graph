@@ -44,6 +44,9 @@ ingress:
     - host: portland-tsp.com
       paths:
         - /graphql
+    - host: www.portland-tsp.com
+      paths:
+        - /graphql
     - host: pbotapps.portland.gov
       paths:
         - /graphql
@@ -51,6 +54,7 @@ ingress:
     - secretName: portland-tsp-tls
       hosts:
         - portland-tsp.com
+        - www.portland-tsp.com
     - secretName: pbotapps-portland-gov-tls
       hosts:
         - pbotapps.portland.gov
