@@ -6,7 +6,7 @@ import { AreaPermitZone } from './types';
 
 let REFRESHING = false;
 
-export let areaPermitZones: AreaPermitZone[] | null = null;
+export let areaPermitZones: Array<AreaPermitZone> | null = null;
 
 export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
   name: 'AreaPermitZone',
@@ -48,8 +48,6 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
   REFRESHING = true;
 
   try {
-    const zones = new Array<AreaPermitZone>();
-
     const res = await axios
       .get(`https://www.portlandmaps.com/arcgis/rest/services/Public/COP_OpenData/MapServer/211/query`, {
         params: {
@@ -75,20 +73,17 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
     if (res.status == 200 && res.data && res.data.features) {
       const data: Feature<Geometry>[] = res.data.features;
 
-      zones.push(
-        ...data.reduce((prev, feature) => {
-          if (feature.properties) {
-            prev.push({
-              id: feature.properties.APPPZone.toUpperCase(),
-              name: feature.properties.ZoneName,
-              visitorLimit: feature.properties.VisitorLimit,
-              enforcementHours: feature.properties.APPPTimeDay
-            });
-          }
-          return prev;
-        }, new Array<AreaPermitZone>())
-      );
-      areaPermitZones = zones;
+      areaPermitZones = data.reduce((prev, feature) => {
+        if (feature.properties) {
+          prev.push({
+            id: feature.properties.APPPZone.toUpperCase(),
+            name: feature.properties.ZoneName.replace(/[ ]{1}\(.*\)$/, ''), // Remove trailing parentheses
+            visitorLimit: feature.properties.VisitorLimit.toLowerCase(),
+            enforcementHours: feature.properties.APPPTimeDay.toLowerCase()
+          });
+        }
+        return prev;
+      }, new Array<AreaPermitZone>());
     }
   } finally {
     REFRESHING = false;
@@ -97,18 +92,19 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
   return areaPermitZones;
 }
 
-export async function getAreaPermitZones(refreshFromSource = true): Promise<AreaPermitZone[] | null> {
-  //console.log('you made it this far little buckaroo.');
-  //return AREA_PARKING_PERMIT_ZONES;
-
+export async function getAreaPermitZones(refreshFromSource = true): Promise<Array<AreaPermitZone> | null> {
   if (areaPermitZones == null) {
+    // Haven't retrieved the zones yet...
     // look them up
     return await refreshAreaPermitZones();
   } else {
-    // if its refreshing, return areaPermitZones //
+    // We have already retrieved the zones at least once...
+    // if its refreshing, return in-memory zones //
     if (REFRESHING) {
       return areaPermitZones;
     } else {
+      // Allow a toggle to prevent refreshing
+      // Used when resolving a zone from another object
       if (refreshFromSource) {
         refreshAreaPermitZones();
       }
