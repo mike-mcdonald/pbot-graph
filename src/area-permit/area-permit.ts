@@ -75,8 +75,9 @@ async function findZone(
   if (!predicate) {
     predicate = z => z.id == id;
   }
+
   const zones = await getAreaPermitZones(false);
-  return zones?.find(predicate);
+  return zones && zones.find(predicate);
 }
 
 export async function lookupAreaPermit(licensePlate: string, areaPermitZone: string): Promise<AreaPermit | null> {
