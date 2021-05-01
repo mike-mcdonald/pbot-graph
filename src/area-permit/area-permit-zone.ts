@@ -22,6 +22,17 @@ export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Readable text for Area Permit Zone'
     },
+    displayName: {
+      type: GraphQLString,
+      description: 'String for use in things like labels or selections',
+      resolve(zone: AreaPermitZone) {
+        if (/(Zone )[A-Z]{1}/.test(zone.name)) {
+          return zone.name;
+        } else {
+          return `Zone ${zone.id} (${zone.name})`;
+        }
+      }
+    },
     visitorLimit: {
       type: GraphQLString,
       description: 'Readable text for Area Permit Zone'
