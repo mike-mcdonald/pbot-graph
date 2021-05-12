@@ -1,8 +1,12 @@
+export type ZoneEnforcementInfo = {
+  visitorLimit: string;
+  enforcementHours: string;
+};
+
 export type AreaPermitZone = {
   id: string;
   name: string;
-  visitorLimit: string;
-  enforcementHours: string;
+  enforcementInfo: Array<ZoneEnforcementInfo>;
 };
 
 export type AreaPermit = {

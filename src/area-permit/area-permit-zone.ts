@@ -1,8 +1,8 @@
 import { Geometry } from '@turf/helpers';
 import { Feature } from '@turf/helpers';
-import axios from 'axios';
-import { GraphQLObjectType, GraphQLString } from 'graphql';
-import { AreaPermitZone } from './types';
+import axios, { AxiosError } from 'axios';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { AreaPermitZone, ZoneEnforcementInfo } from './types';
 
 let REFRESHING = false;
 
@@ -15,12 +15,10 @@ export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
 
   fields: () => ({
     id: {
-      type: GraphQLString,
-      description: 'value of Area Permit Zone.'
+      type: GraphQLString
     },
     name: {
-      type: GraphQLString,
-      description: 'Readable text for Area Permit Zone'
+      type: GraphQLString
     },
     displayName: {
       type: GraphQLString,
@@ -33,13 +31,20 @@ export const areaPermitZoneType: GraphQLObjectType = new GraphQLObjectType({
         }
       }
     },
-    visitorLimit: {
-      type: GraphQLString,
-      description: 'Readable text for Area Permit Zone'
-    },
-    enforcementHours: {
-      type: GraphQLString,
-      description: 'Readable text for Area Permit Zone'
+    enforcementInfo: {
+      type: GraphQLList(
+        new GraphQLObjectType({
+          name: 'ZoneEnforcementInfo',
+          fields: {
+            visitorLimit: {
+              type: GraphQLString
+            },
+            enforcementHours: {
+              type: GraphQLString
+            }
+          }
+        })
+      )
     }
   })
 });
@@ -48,8 +53,9 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
   REFRESHING = true;
 
   try {
-    const res = await axios
-      .get(`https://www.portlandmaps.com/arcgis/rest/services/Public/COP_OpenData/MapServer/211/query`, {
+    const res = await axios.get(
+      `https://www.portlandmaps.com/arcgis/rest/services/Public/COP_OpenData/MapServer/211/query`,
+      {
         params: {
           f: 'geojson',
           geometryType: 'esriGeometryEnvelope',
@@ -65,26 +71,53 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
           outSR: '4326',
           outFields: 'APPPZone, ZoneName, VisitorLimit, APPPTimeDay'
         }
-      })
-      .catch((err: any) => {
-        throw new Error(err);
-      });
+      }
+    );
 
     if (res.status == 200 && res.data && res.data.features) {
       const data: Feature<Geometry>[] = res.data.features;
 
-      areaPermitZones = data.reduce((prev, feature) => {
-        if (feature.properties) {
-          prev.push({
-            id: feature.properties.APPPZone.toUpperCase(),
-            name: feature.properties.ZoneName.replace(/[ ]{1}\(.*\)$/, ''), // Remove trailing parentheses
-            visitorLimit: feature.properties.VisitorLimit.toLowerCase(),
-            enforcementHours: feature.properties.APPPTimeDay.toLowerCase()
-          });
-        }
-        return prev;
-      }, new Array<AreaPermitZone>());
+      areaPermitZones = Array.from(
+        data
+          .reduce((prev, feature) => {
+            if (feature.properties) {
+              const id = feature.properties.APPPZone.toUpperCase();
+              const enforcementInfo: ZoneEnforcementInfo = {
+                visitorLimit: feature.properties.VisitorLimit.toLowerCase(),
+                enforcementHours: feature.properties.APPPTimeDay.toLowerCase()
+              };
+
+              if (prev.has(id)) {
+                const zone = prev.get(id);
+
+                if (zone) {
+                  if (
+                    !zone.enforcementInfo.find(
+                      info =>
+                        info.enforcementHours == enforcementInfo.enforcementHours &&
+                        info.visitorLimit == enforcementInfo.visitorLimit
+                    )
+                  ) {
+                    zone.enforcementInfo.push(enforcementInfo);
+                  }
+
+                  prev.set(id, zone);
+                }
+              } else {
+                prev.set(id, {
+                  id,
+                  name: feature.properties.ZoneName.replace(/[ ]{1}\(.*\)$/, ''), // Remove trailing parentheses
+                  enforcementInfo: new Array<ZoneEnforcementInfo>(enforcementInfo)
+                });
+              }
+            }
+            return prev;
+          }, new Map<string, AreaPermitZone>())
+          .values()
+      );
     }
+  } catch (err) {
+    throw err;
   } finally {
     REFRESHING = false;
   }
