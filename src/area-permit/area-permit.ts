@@ -4,8 +4,8 @@ import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql';
 import axios from 'axios';
 
 import * as fastxml from 'fast-xml-parser';
-import { AreaPermit } from './types';
-import { AREA_PARKING_PERMIT_ZONES, areaPermitZoneType } from './area-permit-zone';
+import { AreaPermit, AreaPermitZone } from './types';
+import { areaPermitZoneType, getAreaPermitZones } from './area-permit-zone';
 
 const CALE_ENFORCEMENT_API_URL =
   'https://webservice.mdc.dmz.caleaccess.com/cwo2exportservice/Enforcement/5/EnforcementService.svc';
@@ -54,7 +54,7 @@ async function callCaleAPI(id: string): Promise<string> {
   return result.data;
 }
 
-function reduceCaleParkingData(data: CaleParkingData): AreaPermit {
+async function reduceCaleParkingData(data: CaleParkingData): Promise<AreaPermit> {
   const startDate: Date = new Date(data.StartDateUtc);
   const endDate: Date = new Date(data.EndDateUtc);
 
@@ -62,9 +62,22 @@ function reduceCaleParkingData(data: CaleParkingData): AreaPermit {
 
   return {
     licensePlate: data.Code,
-    zone: AREA_PARKING_PERMIT_ZONES.find(z => z.value == data.Zone),
+    // verify how app zones are named by cale //
+    zone: await findZone(data.Zone, z => data.Zone == `APP Zone ${z.id}`),
     isValid: startDate <= currentDate && endDate >= currentDate
   };
+}
+
+async function findZone(
+  id: string,
+  predicate?: (value: AreaPermitZone, index: number, obj: AreaPermitZone[]) => unknown
+) {
+  if (!predicate) {
+    predicate = z => z.id == id;
+  }
+
+  const zones = await getAreaPermitZones(false);
+  return zones && zones.find(predicate);
 }
 
 export async function lookupAreaPermit(licensePlate: string, areaPermitZone: string): Promise<AreaPermit | null> {
@@ -78,7 +91,9 @@ export async function lookupAreaPermit(licensePlate: string, areaPermitZone: str
 
     let returnData: AreaPermit = {
       licensePlate,
-      zone: AREA_PARKING_PERMIT_ZONES.find(z => z.value == areaPermitZone),
+      //zone: areaPermitZone,
+      //zone: AREA_PARKING_PERMIT_ZONES.find(z => z.value == areaPermitZone),
+      zone: await findZone(areaPermitZone),
       isValid: false
     };
 
@@ -93,9 +108,9 @@ export async function lookupAreaPermit(licensePlate: string, areaPermitZone: str
       ? xmlResponseObj.ArrayOfValidParkingData.ValidParkingData
       : [xmlResponseObj.ArrayOfValidParkingData.ValidParkingData];
 
-    returnData = parkingData.reduce((acc: AreaPermit, curr: CaleParkingData) => {
-      const permit = reduceCaleParkingData(curr);
-      if (permit.zone && permit.zone.value == areaPermitZone) {
+    returnData = parkingData.reduce(async (acc: AreaPermit, curr: CaleParkingData) => {
+      const permit = await reduceCaleParkingData(curr);
+      if (permit.zone && permit.zone.id == areaPermitZone) {
         acc = permit;
       }
       return acc;

@@ -1,10 +1,16 @@
+export type ZoneEnforcementInfo = {
+  visitorLimit: string;
+  enforcementHours: string;
+};
+
 export type AreaPermitZone = {
-  value: string;
-  text: string;
+  id: string;
+  name: string;
+  enforcementInfo: Array<ZoneEnforcementInfo>;
 };
 
 export type AreaPermit = {
   licensePlate: string;
-  zone?: AreaPermitZone;
+  zone?: AreaPermitZone | null;
   isValid: boolean;
 };
