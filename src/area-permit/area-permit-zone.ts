@@ -83,8 +83,8 @@ async function refreshAreaPermitZones(): Promise<AreaPermitZone[] | null> {
             if (feature.properties) {
               const id = feature.properties.APPPZone.toUpperCase();
               const enforcementInfo: ZoneEnforcementInfo = {
-                visitorLimit: feature.properties.VisitorLimit.toLowerCase(),
-                enforcementHours: feature.properties.APPPTimeDay.toLowerCase()
+                visitorLimit: feature.properties.VisitorLimit?.toLowerCase(),
+                enforcementHours: feature.properties.APPPTimeDay?.toLowerCase()
               };
 
               if (prev.has(id)) {
