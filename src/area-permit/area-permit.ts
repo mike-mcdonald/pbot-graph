@@ -110,7 +110,7 @@ export async function lookupAreaPermit(licensePlate: string, areaPermitZone: str
 
     returnData = parkingData.reduce(async (acc: AreaPermit, curr: CaleParkingData) => {
       const permit = await reduceCaleParkingData(curr);
-      if (permit.zone && permit.zone.id == areaPermitZone) {
+      if (permit.zone && permit.zone.id == areaPermitZone && permit.isValid) {
         acc = permit;
       }
       return acc;
