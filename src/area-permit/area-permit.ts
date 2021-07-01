@@ -104,7 +104,7 @@ export async function lookupAreaPermit(licensePlate: string, areaPermitZone: str
 
     // We could get multiple parking data results or only one
     //  so we'll cast any return values as an array to reduce code duplication
-    const parkingData = Array.isArray(xmlResponseObj.ArrayOfValidParkingData)
+    const parkingData = Array.isArray(xmlResponseObj.ArrayOfValidParkingData.ValidParkingData)
       ? xmlResponseObj.ArrayOfValidParkingData.ValidParkingData
       : [xmlResponseObj.ArrayOfValidParkingData.ValidParkingData];
 
