@@ -60,10 +60,16 @@ async function reduceCaleParkingData(data: CaleParkingData): Promise<AreaPermit>
 
   const currentDate = new Date();
 
+  //console.log('is valid: ' + (startDate <= currentDate && endDate >= currentDate));
+  //console.log('  startdate: ' + startDate);
+  //console.log('  currentdate: ' + currentDate);
+  //console.log('  enddate: ' + endDate);
+
   return {
     licensePlate: data.Code,
     // verify how app zones are named by cale //
-    zone: await findZone(data.Zone, z => data.Zone == `APP Zone ${z.id}`),
+    //zone: await findZone(data.Zone, z => data.Zone == `APP Zone ${z.id}`),
+    zone: await findZone(data.Zone, z => data.Zone == z.id),
     isValid: startDate <= currentDate && endDate >= currentDate
   };
 }
@@ -75,7 +81,6 @@ async function findZone(
   if (!predicate) {
     predicate = z => z.id == id;
   }
-
   const zones = await getAreaPermitZones(false);
   return zones && zones.find(predicate);
 }
